@@ -2,7 +2,7 @@
 //configuration base de donnee
 $database = array(
     "serveur" => "localhost",
-    "nom_base" => "los-framework",
+    "nom_base" => "licence",
     "utilisateur" => "root",
     "motdepasse" => ""
 );

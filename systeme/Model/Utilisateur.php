@@ -177,7 +177,7 @@ class Utilisateur extends Model
      */
     public function setMotdepasse($motdepasse)
     {
-        $this->motdepasse = sha1($motdepasse);
+        $this->motdepasse = password_hash($motdepasse, PASSWORD_BCRYPT);
     }
 
     /**
@@ -312,10 +312,10 @@ class Utilisateur extends Model
         try {
             if (self::SiPseudoExiste($this->getPseudo())) {
                 return "pseudo existe";
-            }/*elseif(self::SiEmailExiste($this->getEmail()))
+            }elseif(self::SiEmailExiste($this->getEmail()))
             {
                 return "email existe";
-            }*/ else {
+            }else {
                 $req = "INSERT INTO utilisateur (pseudo, email, role, nom, prenom, motdepasse, active,photo,telephone) VALUES 
         ('" . $this->pseudo . "','" . $this->email . "','" . $this->role . "','" . $this->nom . "','" . $this->prenom . "','" . $this->motdepasse . "','" . $this->active . "','" . $this->photo . "','" . $this->telephone . "')";
                 if (self::connection()->query($req)) {
@@ -369,42 +369,32 @@ class Utilisateur extends Model
     public static function Connecter($critere, $motdepasse)
     {
         try {
-            $con = self::connection();
-            $motdepasse = sha1($motdepasse);
-            $req = "SELECT *FROM utilisateur WHERE (pseudo=:critere OR email=:critere OR telephone=:critere) AND motdepasse=:motdepasse";
-            $stmt = $con->prepare($req);
-            $param = array(
-                ":critere" => $critere,
-                ":motdepasse" => $motdepasse
-            );
-            $stmt->execute($param);
-            if ($data = $stmt->fetch()) {
-                if (isset($_SESSION['utilisateur'])) {
-                    return "session encour";
-                } else {
-                    if (!self::SiUtilisateurActive($data['id'])) {
-                        return "Votre compte est inactif, contacter l'administrateur";
+            $req = "select *from utilisateur where (pseudo='" . $critere . "' or email='" . $critere . "' or telephone='" . $critere . "') ";
+            $rs = self::connection()->query($req);
+            if ($data = $rs->fetch()) {
+                if (password_verify($motdepasse, $data['motdepasse'])) {
+                    if (isset($_SESSION['utilisateur'])) {
+                        return "session encour";
                     } else {
-                        /* if (self::SiUtilisateurConnecter($data['id'])) {
-
-                             return "Imposible de se connecter, Vous etes deja connecter sur un autre ordinateur , <br />
-                             Deconnecter avant de recommencer
-                              ";
-                         } else {*/
-                        $re = "UPDATE utilisateur SET statut='1' WHERE id='" . $data['id'] . "'";
-                        self::connection()->query($re);
-                        $_SESSION['utilisateur'] = $data['id'];
-                        $_SESSION['pseudo'] = $data['pseudo'];
-                        $_SESSION['role'] = $data['role'];
-                        return "ok";
-                        //}
+                        if (!self::SiUtilisateurActive($data['id'])) {
+                            return "inactif";
+                        } else {
+                            $re = "UPDATE utilisateur SET statut='1' WHERE id='" . $data['id'] . "'";
+                            self::connection()->query($re);
+                            $_SESSION['utilisateur'] = $data['id'];
+                            $_SESSION['pseudo'] = $data['pseudo'];
+                            $_SESSION['role'] = $data['role'];
+                            return "ok";
+                        }
                     }
+                }else {
+                    return "Nom Utilisateur Ou motdepasse incorect";
                 }
             } else {
                 return "Nom Utilisateur Ou motdepasse incorect";
             }
-        } catch (\Exception $ex) {
-            throw new \Exception($ex->getMessage());
+        } catch (Exception $ex) {
+            throw new Exception($ex->getMessage());
         }
 
     }
@@ -474,16 +464,27 @@ class Utilisateur extends Model
             return false;
         }
     }
+    public function modifier1()
+    {
 
+        $req = "UPDATE utilisateur SET nom='" . $this->nom . "', prenom='" . $this->prenom . "'
+        ,telephone='" . $this->telephone . "',photo='" . $this->photo . "' WHERE id='" . $this->id . "'";
+        if (self::connection()->query($req)) {
+            $con = null;
+            return true;
+        } else {
+            $con = null;
+            return false;
+        }
+    }
     /**
      * Lister tout les utilisateur
      * @return array
      */
-    public function Lister()
+    public  function Lister()
     {
         try {
-            $u = \app\CentreSante\Models\Utilisateur::session_valeur();
-            $con = self::connection();
+                      $con = self::connection();
             $req = "SELECT *FROM utilisateur";
             $stmt = $con->prepare($req);
             $stmt->execute();
@@ -568,6 +569,16 @@ class Utilisateur extends Model
         if (isset($_SESSION['pseudo'])) {
             return $_SESSION['pseudo'];
         }
+    }
+    public static function avatar($pseudo)
+    {
+        $con = self::connection();
+        $req = "SELECT photo FROM utilisateur where pseudo='".$pseudo."'";
+        $rps = $con->query($req);
+        $data = $rps->fetch();
+        $id = $data['photo'];
+        $con = null;
+        return $id;
     }
 
     /**

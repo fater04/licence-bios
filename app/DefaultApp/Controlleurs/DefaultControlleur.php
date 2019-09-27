@@ -12,8 +12,11 @@ use systeme\Controlleur\Controlleur;
 class DefaultControlleur extends Controlleur
 {
     public function index(){
-        $variable['titre']="Acceuil";
-        return $this->render("default/index",$variable);
+        $variable=array(
+            "titre"=>"Accueil",
+            "active"=>"active open"
+        );
+        return $this->render("default/default",$variable);
     }
  
 }
