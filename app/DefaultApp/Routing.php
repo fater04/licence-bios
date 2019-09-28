@@ -26,7 +26,9 @@ App::post("/utilisateur-:id", "utilisateur.modifierID")->avec("id", "['0-9']+");
 //App::get("/supprimer-utilisateur-:id", "utilisateur.supprimer", "supprimer_utilisateur")->avec("id", "['0-9']+");
 //App::get("/modifier-utilisateur-:id", "utilisateur.modifier", "modifier_utilisateur")->avec("id", "['0-9']+");
 
-
+App::get("/ajouter-patient", "dossier.ajouter", "ajouter_patient");
+App::post("/ajouter-patient", "dossier.ajouter");
+App::get("/lister-patient", "dossier.lister", "lister_patient");
 
 //App::get("/lister-utilisateur", "utilisateur.lister", "lister_utilisateur");
 //App::get("/blocker-utilisateur-:id", "utilisateur.blocker", "blocker_utilisateur")->avec("id", "['0-9']+");

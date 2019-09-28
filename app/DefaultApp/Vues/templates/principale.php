@@ -196,6 +196,27 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
                                 <span class="selected"></span>
                             </a>
                         </li>
+                        <li class="nav-item <?php if (isset($active1)) echo $active1; ?>  ">
+                            <a href="#" class="nav-link nav-toggle"> <i class="fa fa-folder"></i>
+                                <span class="title">Dossier</span> <span class="arrow"></span>
+
+                            </a>
+
+                            <ul class="sub-menu">
+                                <li class="nav-item  <?php if (isset($active11)) echo $active11; ?>  ">
+                                    <a href="<?= \systeme\Application\Application::genererUrl("ajouter_patient") ?>"
+                                       class="nav-link "> <span class="title">Ajouter Patient</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  <?php if (isset($active14)) echo $active14; ?>  ">
+                                    <a href="<?= \systeme\Application\Application::genererUrl("lister_patient") ?>"
+                                       class="nav-link "> <span class="title">lister Patient</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+
                         <li class="nav-item <?php if (isset($active0)) echo $active0; ?>  ">
                             <a href="#" class="nav-link nav-toggle"> <i class="fa fa-user"></i>
                                 <span class="title">Utilisateurs</span> <span class="arrow"></span>
@@ -297,6 +318,7 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
 
 <script src="<?php echo app::autre("assets/bootstrap/js/bootstrap.min.js") ?>"></script>
 <script src="<?php echo app::autre("assets/bootstrap-switch/js/bootstrap-switch.min.js") ?>"></script>
+<script src="<?php echo app::autre("assets/bootstrap-inputmask/bootstrap-inputmask.min.js") ?>"></script>
 <script src="<?php echo app::autre("assets/bootstrap-datepicker/bootstrap-datepicker.js") ?>"></script>
 <script src="<?php echo app::autre("assets/bootstrap-datepicker/bootstrap-datepicker-init.js") ?>"></script>
 
@@ -315,6 +337,7 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
 <script src="<?php echo app::autre("assets/chart-js/Chart.bundle.js") ?>"></script>
 <script src="<?php echo app::autre("assets/chart-js/utils.js") ?>"></script>
 <script src="<?php echo app::autre("assets/chart-js/home-data.js") ?>"></script>
+<script src="<?php echo app::autre("assets/bios.js") ?>"></script>
 <!--<script type="text/javascript">-->
 <!--    $(document).ready(function () {-->
 <!--        $(".alert").delay(4000).slideUp(200, function () {-->
@@ -325,9 +348,6 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
 <?php if (isset($notification)) { ?>
     <script type="text/javascript">
         $(document).ready(function () {
-//        $(".alert").delay(4000).slideUp(200, function () {
-//            $(this).alert('close');
-//        });
             toastr["<?=$notification['type']?>"]("<?=$notification['message']?>", "<?=$notification['titre']?>", {
                 "closeButton": true,
                 "debug": true,
@@ -350,6 +370,9 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
 
     </script>
 <?php } ?>
+<div class="msg_affiche">
+
+</div>
 
 <script src="<?php echo app::autre("") ?>"></script>
 
