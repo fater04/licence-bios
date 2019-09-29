@@ -208,6 +208,11 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
                                        class="nav-link "> <span class="title">Ajouter Patient</span>
                                     </a>
                                 </li>
+                                <li class="nav-item  <?php if (isset($active12)) echo $active12; ?>  ">
+                                    <a href="<?= \systeme\Application\Application::genererUrl("rechercher_patient") ?>"
+                                       class="nav-link "> <span class="title">Rechercher Patient</span>
+                                    </a>
+                                </li>
                                 <li class="nav-item  <?php if (isset($active14)) echo $active14; ?>  ">
                                     <a href="<?= \systeme\Application\Application::genererUrl("lister_patient") ?>"
                                        class="nav-link "> <span class="title">lister Patient</span>

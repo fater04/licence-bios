@@ -382,4 +382,19 @@ class Patient extends Model
             throw new \Exception($ex->getMessage());
         }
     }
+    public static function Rechercher_All($critere)
+    {
+        try {
+            $con = self::connection();
+            $req = "SELECT *FROM patient WHERE id='" . $critere . "' OR code='" . $critere . "' ";
+
+            $stmt = $con->prepare($req);
+            $stmt->execute();
+            $data = $stmt->fetchAll(\PDO::FETCH_CLASS, "app\DefaultApp\Models\Patient");
+            return $data;
+        } catch (Exception $ex) {
+            throw new \Exception($ex->getMessage());
+        }
+    }
+
 }
