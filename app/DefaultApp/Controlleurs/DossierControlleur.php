@@ -53,6 +53,21 @@ class DossierControlleur extends Controlleur
 
         $this->render("dossier/rechercher", $variable);
     }
+    public function modifier()
+    {
+
+        $variable = array(
+            "titre" => "Rechercher Patient",
+            "entete" => "Patient",
+            "active1" => "active open",
+            "active13" => "active open"
+        );
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $variable['listePatient'] = Patient::Rechercher_All($_POST['critere']);
+        }
+
+        $this->render("dossier/modifier", $variable);
+    }
 
 
 }
