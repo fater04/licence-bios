@@ -36,40 +36,14 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
     <link href="<?= app::css("theme-color") ?>" rel="stylesheet" type="text/css"/>
 
     <link href="<?= app::autre("assets/toastr/toastr.min.css") ?>" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+    <script src="<?php echo app::autre("assets/jquery.min.js") ?>"></script>
+    <link rel="stylesheet" type="text/css" href="<?= app::autre("assets/jquery-confirm.min.css")?>"/>
+    <script type="text/javascript"       src="<?= app::autre("assets/jquery-confirm.min.js")?>"></script>
 
 </head>
 
 <body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white white-sidebar-color logo-indigo">
-<script type="text/javascript">
 
-    $.confirm({
-        icon: 'fa fa-question',
-        theme: 'bootstrap',
-        closeIcon: true,
-        animation: 'scale',
-        type: 'orange',
-        title: 'Confirm!',
-        content: 'Simple confirm!',
-        buttons: {
-            confirm: function () {
-                $.alert('Confirmed!');
-            },
-            cancel: function () {
-                $.alert('Canceled!');
-            },
-            somethingElse: {
-                text: 'Something else',
-                btnClass: 'btn-blue',
-                keys: ['enter', 'shift'],
-                action: function(){
-                    $.alert('Something else?');
-                }
-            }
-        }
-    });
-</script>
 <div class="page-wrapper">
     <!-- start header -->
     <div class="page-header navbar navbar-fixed-top">
@@ -223,12 +197,9 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
                             <a href="<?= \systeme\Application\Application::genererUrl("dashboard") ?>"
                                class="nav-link ">
                                 <i class="fa fa-dashboard"></i>
-                                <span class="title">DAshboard</span>
+                                <span class="title">Tableau de Bord</span>
                                 <span class="selected"></span>
                             </a>
-
-                            <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-circle btn-primary"
-                                    data-type="confirm">CLICK ME</button>
                         </li>
                         <li class="nav-item <?php if (isset($active1)) echo $active1; ?>  ">
                             <a href="#" class="nav-link nav-toggle"> <i class="fa fa-folder"></i>
@@ -352,7 +323,7 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
     </div>
 </div>
 
-<script src="<?php echo app::autre("assets/jquery.min.js") ?>"></script>
+<!--<script src="--><?php //echo app::autre("assets/jquery.min.js") ?><!--"></script>-->
 <script src="<?php echo app::autre("assets/popper/popper.js") ?>"></script>
 <script src="<?php echo app::autre("assets/jquery.blockui.min.js") ?>"></script>
 <script src="<?php echo app::autre("assets/jquery-validation/js/jquery.validate.min.js") ?>"></script>
@@ -385,13 +356,13 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
 <script src="<?php echo app::autre("assets/chart-js/utils.js") ?>"></script>
 <script src="<?php echo app::autre("assets/chart-js/home-data.js") ?>"></script>
 <script src="<?php echo app::autre("assets/bios.js") ?>"></script>
-<!--<script type="text/javascript">-->
-<!--    $(document).ready(function () {-->
-<!--        $(".alert").delay(4000).slideUp(200, function () {-->
-<!--            $(this).alert('close');-->
-<!--        });-->
-<!--    });-->
-<!--</script>-->
+<script type="text/javascript">
+    $(document).ready(function () {
+//        $(".alert").delay(4000).slideUp(200, function () {
+//            $(this).alert('close');
+//        });
+    });
+</script>
 
 
 <?php if (isset($notification)) { ?>
