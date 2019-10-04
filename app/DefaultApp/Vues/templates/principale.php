@@ -26,7 +26,8 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
     <link href="<?= app::autre("assets/material/material.min.css") ?>" rel="stylesheet" type="text/css"/>
 
     <link href="<?= app::css("material_style") ?>" rel="stylesheet" type="text/css"/>
-
+    <!-- sweet alert -->
+    <link rel="stylesheet" href="<?= app::autre("assets/sweet-alert/sweetalert.min.css") ?>"/>
     <link href="<?= app::css("theme_style") ?>" rel="stylesheet" type="text/css"/>
     <link href="<?= app::css("style") ?>" rel="stylesheet" type="text/css"/>
     <link href="<?= app::css("plugins.min") ?>" rel="stylesheet" type="text/css"/>
@@ -35,10 +36,40 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
     <link href="<?= app::css("theme-color") ?>" rel="stylesheet" type="text/css"/>
 
     <link href="<?= app::autre("assets/toastr/toastr.min.css") ?>" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 
 </head>
 
 <body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white white-sidebar-color logo-indigo">
+<script type="text/javascript">
+
+    $.confirm({
+        icon: 'fa fa-question',
+        theme: 'bootstrap',
+        closeIcon: true,
+        animation: 'scale',
+        type: 'orange',
+        title: 'Confirm!',
+        content: 'Simple confirm!',
+        buttons: {
+            confirm: function () {
+                $.alert('Confirmed!');
+            },
+            cancel: function () {
+                $.alert('Canceled!');
+            },
+            somethingElse: {
+                text: 'Something else',
+                btnClass: 'btn-blue',
+                keys: ['enter', 'shift'],
+                action: function(){
+                    $.alert('Something else?');
+                }
+            }
+        }
+    });
+</script>
 <div class="page-wrapper">
     <!-- start header -->
     <div class="page-header navbar navbar-fixed-top">
@@ -195,6 +226,9 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
                                 <span class="title">Tableau de Bord</span>
                                 <span class="selected"></span>
                             </a>
+
+                            <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-circle btn-primary"
+                                    data-type="confirm">CLICK ME</button>
                         </li>
                         <li class="nav-item <?php if (isset($active1)) echo $active1; ?>  ">
                             <a href="#" class="nav-link nav-toggle"> <i class="fa fa-folder"></i>
@@ -337,6 +371,9 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
 <script src="<?php echo app::autre("assets/counterup/jquery.waypoints.min.js") ?>"></script>
 <script src="<?php echo app::autre("assets/counterup/jquery.counterup.min.js") ?>"></script>
 
+<script src="<?php echo app::autre("assets/sweet-alert/sweetalert.min.js") ?>"></script>
+<script src="<?php echo app::autre("assets/sweet-alert/sweet-alert-data.js") ?>"></script>
+
 <script src="<?php echo app::autre("assets/app.js") ?>"></script>
 <script src="<?php echo app::autre("assets/form-validation.js") ?>"></script>
 <script src="<?php echo app::autre("assets/layout.js") ?>"></script>
@@ -355,6 +392,8 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
 <!--        });-->
 <!--    });-->
 <!--</script>-->
+
+
 <?php if (isset($notification)) { ?>
     <script type="text/javascript">
         $(document).ready(function () {
