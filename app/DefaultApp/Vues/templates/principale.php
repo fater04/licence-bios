@@ -223,7 +223,7 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
                             <a href="<?= \systeme\Application\Application::genererUrl("dashboard") ?>"
                                class="nav-link ">
                                 <i class="fa fa-dashboard"></i>
-                                <span class="title">Tableau de Bord</span>
+                                <span class="title">DAshboard</span>
                                 <span class="selected"></span>
                             </a>
 
