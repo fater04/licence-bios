@@ -9,6 +9,7 @@
 <div class="card card-box">
     <div class="card-head">
         <header>Ajouter Patient</header>
+        <?=\systeme\Application\Application::block('tools')?>
     </div>
 
     <div class="card-body">
