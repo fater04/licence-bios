@@ -6,6 +6,7 @@
  * Time: 10:39 AM
  */
 ?>
+<<<<<<< HEAD
 <div class="row">
     <div class="col-md-12 col-sm-12">
         <div class="card card-box">
@@ -19,6 +20,19 @@
              
 			 <div class="card-body" id="bar-parent">
                 <form role="form"  class="form-horizontal" action="ajouter-dossier" method="post" enctype="multipart/form-data" id="formulaire_ajouter_patient">
+=======
+<div class="card card-box">
+    <div class="card-head">
+        <header>Ajouter Patient</header>
+        <?=\systeme\Application\Application::block('tools')?>
+    </div>
+
+    <div class="card-body">
+        <form role="form" class="form-horizontal" action="ajouter-dossier" method="post" enctype="multipart/form-data"
+              id="formulaire_ajouter_patient">
+            <div class="row col-md-12 col-lg-12 col-sm-12">
+                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+>>>>>>> 368181273f8300723781f54ca0ece737081c9184
                     <input type="hidden" name="ajouter_patient"/>
                     <div class="form-body">
                         <div class="form-group row">

@@ -14,9 +14,7 @@
                 <div class="card card-topline-green">
                     <div class="card-head">
                         <header>Liste des patients </header>
-                        <div class="tools">
-                            &nbsp;
-                        </div>
+                        <?=\systeme\Application\Application::block('tools')?>
                     </div>
                     <div class="card-body ">
                         <div class="table-responsive">
