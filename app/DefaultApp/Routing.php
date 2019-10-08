@@ -26,6 +26,7 @@ App::post("/utilisateur-:id", "utilisateur.modifierID")->avec("id", "['0-9']+");
 //App::get("/supprimer-utilisateur-:id", "utilisateur.supprimer", "supprimer_utilisateur")->avec("id", "['0-9']+");
 //App::get("/modifier-utilisateur-:id", "utilisateur.modifier", "modifier_utilisateur")->avec("id", "['0-9']+");
 
+// patient 
 App::get("/ajouter-patient", "dossier.ajouter", "ajouter_patient");
 App::post("/ajouter-patient", "dossier.ajouter");
 App::get("/lister-patient", "dossier.lister", "lister_patient");
@@ -33,10 +34,10 @@ App::get("/rechercher-patient", "dossier.rechercher", "rechercher_patient");
 App::post("/rechercher-patient", "dossier.rechercher");
 App::get("/modifier-patient", "dossier.modifier", "modifier_patient");
 App::post("/modifier-patient", "dossier.modifier");
+// rendez-vous 
+App::get("/Ajouter-RendezVous","rendezvous.ajouter","ajouter_RendezVous");
+App::post("/Ajouter-RendezVous","rendezvous.ajouter");
 
-//App::get("/lister-utilisateur", "utilisateur.lister", "lister_utilisateur");
-//App::get("/blocker-utilisateur-:id", "utilisateur.blocker", "blocker_utilisateur")->avec("id", "['0-9']+");
-//App::get("/deblocker-utilisateur-:id", "utilisateur.deblocker", "deblocker_utilisateur")->avec("id", "['0-9']+");
-//App::get("/supprimer-utilisateur-:id", "utilisateur.supprimer", "supprimer_utilisateur")->avec("id", "['0-9']+");
-//App::get("/modifier-utilisateur-:id", "utilisateur.modifier", "modifier_utilisateur")->avec("id", "['0-9']+");
-//App::post("/modifier-utilisateur-:id", "utilisateur.modifier")->avec("id", "['0-9']+");
+// attribution salle 
+App::get("/affecter-salle","salle.ajouter","affecter_salle");
+App::post("/affecter-salle","salle.ajouter");

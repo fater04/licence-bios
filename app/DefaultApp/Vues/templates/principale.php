@@ -24,10 +24,9 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
     <link href="<?= app::autre("assets/bootstrap-datepicker/datepicker.css") ?>" rel="stylesheet" type="text/css"/>
 
     <link href="<?= app::autre("assets/material/material.min.css") ?>" rel="stylesheet" type="text/css"/>
-
+	<link rel="stylesheet" href="<?= app::autre("css/material_style.css") ?>/>
     <link href="<?= app::css("material_style") ?>" rel="stylesheet" type="text/css"/>
-    <!-- sweet alert -->
-    <link rel="stylesheet" href="<?= app::autre("assets/sweet-alert/sweetalert.min.css") ?>"/>
+
     <link href="<?= app::css("theme_style") ?>" rel="stylesheet" type="text/css"/>
     <link href="<?= app::css("style") ?>" rel="stylesheet" type="text/css"/>
     <link href="<?= app::css("plugins.min") ?>" rel="stylesheet" type="text/css"/>
@@ -36,14 +35,10 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
     <link href="<?= app::css("theme-color") ?>" rel="stylesheet" type="text/css"/>
 
     <link href="<?= app::autre("assets/toastr/toastr.min.css") ?>" rel="stylesheet" type="text/css"/>
-    <script src="<?php echo app::autre("assets/jquery.min.js") ?>"></script>
-    <link rel="stylesheet" type="text/css" href="<?= app::autre("assets/jquery-confirm.min.css")?>"/>
-    <script type="text/javascript"       src="<?= app::autre("assets/jquery-confirm.min.js")?>"></script>
 
 </head>
 
 <body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white white-sidebar-color logo-indigo">
-
 <div class="page-wrapper">
     <!-- start header -->
     <div class="page-header navbar navbar-fixed-top">
@@ -194,6 +189,7 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
                         </li>
 
                         <li class="nav-item <?php if (isset($active)) echo $active; ?> ">
+						
                             <a href="<?= \systeme\Application\Application::genererUrl("dashboard") ?>"
                                class="nav-link ">
                                 <i class="fa fa-dashboard"></i>
@@ -201,8 +197,10 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
                                 <span class="selected"></span>
                             </a>
                         </li>
+						<!---- Menu Dossier -->
                         <li class="nav-item <?php if (isset($active1)) echo $active1; ?>  ">
-                            <a href="#" class="nav-link nav-toggle"> <i class="fa fa-folder"></i>
+						
+                            <a href="#" class="nav-link nav-toggle"> <i class="fa fa-archive"></i>
                                 <span class="title">Dossier</span> <span class="arrow"></span>
 
                             </a>
@@ -210,28 +208,153 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
                             <ul class="sub-menu">
                                 <li class="nav-item  <?php if (isset($active11)) echo $active11; ?>  ">
                                     <a href="<?= \systeme\Application\Application::genererUrl("ajouter_patient") ?>"
-                                       class="nav-link "> <span class="title">Ajouter Patient</span>
+                                       class="nav-link "><i class="fa fa-plus"></i> <span class="title">Ajouter Patient</span>
                                     </a>
                                 </li>
                                 <li class="nav-item  <?php if (isset($active12)) echo $active12; ?>  ">
                                     <a href="<?= \systeme\Application\Application::genererUrl("rechercher_patient") ?>"
-                                       class="nav-link "> <span class="title">Rechercher Patient</span>
+                                       class="nav-link "><i class="fa fa-search"></i> <span class="title">Rechercher Patient</span>
                                     </a>
                                 </li>
                                 <li class="nav-item  <?php if (isset($active13)) echo $active13; ?>  ">
                                     <a href="<?= \systeme\Application\Application::genererUrl("modifier_patient") ?>"
-                                       class="nav-link "> <span class="title">Modifier Patient</span>
+                                       class="nav-link "><i class="fa fa-edit"></i> <span class="title">Modifier Patient</span>
                                     </a>
                                 </li>
                                 <li class="nav-item  <?php if (isset($active14)) echo $active14; ?>  ">
                                     <a href="<?= \systeme\Application\Application::genererUrl("lister_patient") ?>"
-                                       class="nav-link "> <span class="title">lister Patient</span>
+                                       class="nav-link "><i class="fa fa-list"></i> <span class="title">lister Patient</span>
                                     </a>
                                 </li>
 
                             </ul>
                         </li>
+						<!--- Menu Rendez vous -->
+						   <li class="nav-item <?php if (isset($active20)) echo $active20; ?>  ">
+                            <a href="#" class="nav-link nav-toggle"> <i class="fa fa-folder"></i>
+                                <span class="title">Rendez-Vous</span> <span class="arrow"></span>
 
+                            </a>
+
+                            <ul class="sub-menu">
+                                <li class="nav-item  <?php if (isset($active21)) echo $active21; ?>  ">
+                                    <a href="<?= \systeme\Application\Application::genererUrl("ajouter_RendezVous") ?>"
+                                       class="nav-link "><i class="fa fa-plus"></i> <span class="title">Ajouter Rendez-Vous</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  <?php if (isset($active22)) echo $active22; ?>  ">
+                                    <a href="<?= \systeme\Application\Application::genererUrl("rechercher_patient") ?>"
+                                       class="nav-link "> <i class="fa fa-search"></i><span class="title">Rechercher </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  <?php if (isset($active23)) echo $active23; ?>  ">
+                                    <a href="<?= \systeme\Application\Application::genererUrl("modifier_patient") ?>"
+                                       class="nav-link "><i class="fa fa-edit"></i> <span class="title">Modifier</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  <?php if (isset($active24)) echo $active24; ?>  ">
+                                    <a href="<?= \systeme\Application\Application::genererUrl("lister_patient") ?>"
+                                       class="nav-link "><i class="fa fa-list"></i> <span class="title">lister </span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+						<!---- Menu Admission -->
+						   <li class="nav-item <?php if (isset($active1)) echo $active1; ?>  ">
+                            <a href="#" class="nav-link nav-toggle"> <i class="fa fa-bed"></i>
+                                <span class="title">Admission</span> <span class="arrow"></span>
+
+                            </a>
+
+                            <ul class="sub-menu">
+                                <li class="nav-item  <?php if (isset($active11)) echo $active11; ?>  ">
+                                    <a href="<?= \systeme\Application\Application::genererUrl("ajouter_patient") ?>"
+                                       class="nav-link "><i class="fa fa-plus"></i> <span class="title">Ajouter</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  <?php if (isset($active12)) echo $active12; ?>  ">
+                                    <a href="<?= \systeme\Application\Application::genererUrl("rechercher_patient") ?>"
+                                       class="nav-link "><i class="fa fa-search"></i> <span class="title">Rechercher</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  <?php if (isset($active13)) echo $active13; ?>  ">
+                                    <a href="<?= \systeme\Application\Application::genererUrl("modifier_patient") ?>"
+                                       class="nav-link "><i class="fa fa-edit"></i> <span class="title">Modifier </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  <?php if (isset($active14)) echo $active14; ?>  ">
+                                    <a href="<?= \systeme\Application\Application::genererUrl("lister_patient") ?>"
+                                       class="nav-link "><i class="fa fa-list"></i> <span class="title">lister </span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+						<!---- Menu Consultation ---->
+						   <li class="nav-item <?php if (isset($active1)) echo $active1; ?>  ">
+                            <a href="#" class="nav-link nav-toggle"> <i class="fa fa-folder"></i>
+                                <span class="title">Consultation</span> <span class="arrow"></span>
+
+                            </a>
+
+                            <ul class="sub-menu">
+                                <li class="nav-item  <?php if (isset($active11)) echo $active11; ?>  ">
+                                    <a href="<?= \systeme\Application\Application::genererUrl("ajouter_patient") ?>"
+                                       class="nav-link "><i class="fa fa-plus"></i> <span class="title">Ajouter </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  <?php if (isset($active12)) echo $active12; ?>  ">
+                                    <a href="<?= \systeme\Application\Application::genererUrl("rechercher_patient") ?>"
+                                       class="nav-link "><i class="fa fa-search"></i> <span class="title">Rechercher </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  <?php if (isset($active13)) echo $active13; ?>  ">
+                                    <a href="<?= \systeme\Application\Application::genererUrl("modifier_patient") ?>"
+                                       class="nav-link "> <i class="fa fa-edit"></i><span class="title">Modifier </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  <?php if (isset($active14)) echo $active14; ?>  ">
+                                    <a href="<?= \systeme\Application\Application::genererUrl("lister_patient") ?>"
+                                       class="nav-link "><i class="fa fa-list"></i> <span class="title">lister </span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+						<!---- Menu Salle ----->
+						  <li class="nav-item <?php if (isset($active0)) echo $active0; ?>  ">
+                            <a href="#" class="nav-link nav-toggle"> <i class="fa fa-home"></i>
+                                <span class="title">Salle</span> <span class="arrow"></span>
+
+                            </a>
+
+                            <ul class="sub-menu">
+                                <li class="nav-item  <?php if (isset($active01)) echo $active01; ?>  ">
+                                    <a href="<?= \systeme\Application\Application::genererUrl("affecter_salle") ?>"
+                                       class="nav-link "><i class="fa fa-plus"></i> <span class="title">Affecter Salle</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item   <?php if (isset($active02)) echo $active02; ?> ">
+                                    <a href="<?= \systeme\Application\Application::genererUrl("rechercher-utilisateur") ?>"
+                                       class="nav-link "><i class="fa fa-search"></i> <span class="title">Rechercher Salle</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item   <?php if (isset($active03)) echo $active03; ?> ">
+                                    <a href="<?= \systeme\Application\Application::genererUrl("modifier-utilisateur") ?>"
+                                       class="nav-link "><i class="fa fa-edit"></i> <span class="title">Modifier Affectation</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item   <?php if (isset($active04)) echo $active04; ?> ">
+                                    <a href="<?= \systeme\Application\Application::genererUrl("utilisateur") ?>"
+                                       class="nav-link "><i class="fa fa-list"></i> <span class="title">Lister Salle</span>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                        </li>
+                        <!---- Menu Utilisateur -->
                         <li class="nav-item <?php if (isset($active0)) echo $active0; ?>  ">
                             <a href="#" class="nav-link nav-toggle"> <i class="fa fa-user"></i>
                                 <span class="title">Utilisateurs</span> <span class="arrow"></span>
@@ -241,22 +364,22 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
                             <ul class="sub-menu">
                                 <li class="nav-item  <?php if (isset($active01)) echo $active01; ?>  ">
                                     <a href="<?= \systeme\Application\Application::genererUrl("ajouter_utilisateur") ?>"
-                                       class="nav-link "> <span class="title">Ajouter Utilisateur</span>
+                                       class="nav-link "><i class="fa fa-plus"></i> <span class="title">Ajouter Utilisateur</span>
                                     </a>
                                 </li>
                                 <li class="nav-item   <?php if (isset($active02)) echo $active02; ?> ">
                                     <a href="<?= \systeme\Application\Application::genererUrl("rechercher-utilisateur") ?>"
-                                       class="nav-link "> <span class="title">Rechercher Utilisateur</span>
+                                       class="nav-link "><i class="fa fa-search"></i> <span class="title">Rechercher Utilisateur</span>
                                     </a>
                                 </li>
                                 <li class="nav-item   <?php if (isset($active03)) echo $active03; ?> ">
                                     <a href="<?= \systeme\Application\Application::genererUrl("modifier-utilisateur") ?>"
-                                       class="nav-link "> <span class="title">Modifier Utilisateur</span>
+                                       class="nav-link "><i class="fa fa-edit"></i> <span class="title">Modifier Utilisateur</span>
                                     </a>
                                 </li>
                                 <li class="nav-item   <?php if (isset($active04)) echo $active04; ?> ">
                                     <a href="<?= \systeme\Application\Application::genererUrl("utilisateur") ?>"
-                                       class="nav-link "> <span class="title">Liste Utilisateurs</span>
+                                       class="nav-link "><i class="fa fa-list"></i> <span class="title">Liste Utilisateurs</span>
                                     </a>
                                 </li>
 
@@ -314,8 +437,8 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
         </div>
     </div>
     <div class="page-footer">
-        <div class="page-footer-inner"> 2019 &copy; Licence-bios 2.0
-            <a href="mailto:redstartheme@gmail.com" target="_top" class="makerCss">BIOS</a>
+        <div class="page-footer-inner">              2019 &copy; -BIOS 2.0
+            <a href="" target="_top" class="makerCss">BIOS</a>
         </div>
         <div class="scroll-to-top">
             <i class="icon-arrow-up"></i>
@@ -323,7 +446,7 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
     </div>
 </div>
 
-<!--<script src="--><?php //echo app::autre("assets/jquery.min.js") ?><!--"></script>-->
+<script src="<?php echo app::autre("assets/jquery.min.js") ?>"></script>
 <script src="<?php echo app::autre("assets/popper/popper.js") ?>"></script>
 <script src="<?php echo app::autre("assets/jquery.blockui.min.js") ?>"></script>
 <script src="<?php echo app::autre("assets/jquery-validation/js/jquery.validate.min.js") ?>"></script>
@@ -336,14 +459,11 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
 <script src="<?php echo app::autre("assets/bootstrap-inputmask/bootstrap-inputmask.min.js") ?>"></script>
 <script src="<?php echo app::autre("assets/bootstrap-datepicker/bootstrap-datepicker.js") ?>"></script>
 <script src="<?php echo app::autre("assets/bootstrap-datepicker/bootstrap-datepicker-init.js") ?>"></script>
-
+<script src="<?php echo app::autre("assets/bootstrap-datepicker/datepicker-init.js")?>"></script>
 <script src="<?php echo app::autre("assets/toastr/toastr.min.js") ?>"></script>
 
 <script src="<?php echo app::autre("assets/counterup/jquery.waypoints.min.js") ?>"></script>
 <script src="<?php echo app::autre("assets/counterup/jquery.counterup.min.js") ?>"></script>
-
-<script src="<?php echo app::autre("assets/sweet-alert/sweetalert.min.js") ?>"></script>
-<script src="<?php echo app::autre("assets/sweet-alert/sweet-alert-data.js") ?>"></script>
 
 <script src="<?php echo app::autre("assets/app.js") ?>"></script>
 <script src="<?php echo app::autre("assets/form-validation.js") ?>"></script>
@@ -356,15 +476,16 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
 <script src="<?php echo app::autre("assets/chart-js/utils.js") ?>"></script>
 <script src="<?php echo app::autre("assets/chart-js/home-data.js") ?>"></script>
 <script src="<?php echo app::autre("assets/bios.js") ?>"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-//        $(".alert").delay(4000).slideUp(200, function () {
-//            $(this).alert('close');
-//        });
-    });
-</script>
 
 
+
+<!--<script type="text/javascript">-->
+<!--    $(document).ready(function () {-->
+<!--        $(".alert").delay(4000).slideUp(200, function () {-->
+<!--            $(this).alert('close');-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
 <?php if (isset($notification)) { ?>
     <script type="text/javascript">
         $(document).ready(function () {
