@@ -35,8 +35,8 @@ App::post("/rechercher-patient", "dossier.rechercher");
 App::get("/modifier-patient", "dossier.modifier", "modifier_patient");
 App::post("/modifier-patient", "dossier.modifier");
 // rendez-vous 
-App::get("/Ajouter-RendezVous","rendezvous.ajouter","ajouter_RendezVous");
-App::post("/Ajouter-RendezVous","rendezvous.ajouter");
+App::get("/Ajouter-RendezVous","rendezVous.ajouter","ajouter_RendezVous");
+App::post("/Ajouter-RendezVous","rendezVous.ajouter");
 
 // attribution salle 
 App::get("/affecter-salle","salle.ajouter","affecter_salle");

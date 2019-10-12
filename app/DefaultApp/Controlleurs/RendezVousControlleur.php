@@ -19,10 +19,10 @@ class RendezVousControlleur extends Controlleur
         $variable = array(
             "titre" => "Ajouter RendezVous",
             "entete" => "Rendez-Vous",
-            "active1" => "active open",
-            "active11" => "active open"
+            "active2" => "active open",
+            "active21" => "active open"
         );
-        $this->render("RendezVous/ajouter", $variable);
+        $this->render("rendezvous/ajouter", $variable);
     }
 /**
     public function lister()
