@@ -370,6 +370,46 @@ class Patient extends Model
             return $ex->getMessage();
         }
     }
+    public function modifier(){
+        try{
+            $v=self::validerInformation();
+            if($v==1){
+                $con=self::connection();
+                $req="update patient set   code=:code,nom=:nom,prenom=:prenom,nom_mere=:nom_mere,adresse=:adresse,email=:email,profession=:profession,sexe=:sexe,date_naissance=:date_naissance,cin=:cin,telephone=:telephone,statut_matrimonial=:statut_matrimonial,groupe_sanguin=:groupe_sanguin where id=:id";
+
+                $param=array(
+                    ":code"=>$this->code,
+                    ":nom"=>$this->nom,
+                    ":prenom"=>$this->prenom,
+                    ":nom_mere"=>$this->nom_mere,
+                    ":adresse"=>$this->adresse,
+                    ":email"=>$this->email,
+                    ":profession"=>$this->profession,
+                    ":sexe"=>$this->sexe,
+                    ":date_naissance"=>$this->date_naissance,
+                    ":cin"=>$this->cin,
+                    ":telephone"=>$this->telephone,
+                    ":statut_matrimonial"=>$this->statut_matrimonial,
+                    ":groupe_sanguin"=>$this->groupe_sanguin,
+                    ":id"=>$this->id
+                );
+
+                $stmt=$con->prepare($req);
+                if($stmt->execute($param)){
+                    return "ok";
+                }else{
+                    return "no";
+                }
+
+            }else{
+                return $v;
+            }
+
+        }catch (\Exception $ex){
+            return $ex->getMessage();
+        }
+    }
+
     public static function lister(){
         try{
             $con=self::connection();
@@ -382,7 +422,7 @@ class Patient extends Model
             throw new \Exception($ex->getMessage());
         }
     }
-    public static function Rechercher_All($critere)
+    public static function Rechercher($critere)
     {
         try {
             $con = self::connection();

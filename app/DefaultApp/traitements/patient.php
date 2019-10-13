@@ -37,21 +37,21 @@ if (isset($_POST['ajouter_patient'])) {
 }
 
 if (isset($_POST['modifier_patient'])) {
-    $id = trim(addslashes(htmlentities($_POST['id'])));
+    $id = trim(addslashes(htmlentities($_POST['id_patient'])));
+
     $code = trim(addslashes(htmlentities($_POST['code'])));
     $nom = trim(addslashes(htmlentities($_POST['nom'])));
     $prenom = trim(addslashes(htmlentities($_POST['prenom'])));
     $nom_mere = trim(addslashes(htmlentities($_POST['nom_mere'])));
-    $adresse = trim(addslashes(htmlentities($_POST['adresse'])));
+    $adresse = trim(addslashes(htmlentities($_POST['addresse'])));
     $email = trim(addslashes(htmlentities($_POST['email'])));
     $profession = trim(addslashes(htmlentities($_POST['profession'])));
     $sexe = trim(addslashes(htmlentities($_POST['sexe'])));
     $date_naissance = trim(addslashes(htmlentities($_POST['date_naissance'])));
-    $identite = trim(addslashes(htmlentities($_POST['identite'])));
+    $identite = trim(addslashes(htmlentities($_POST['cin'])));
     $telephone = trim(addslashes(htmlentities($_POST['telephone'])));
     $statut_matrimonial = trim(addslashes(htmlentities($_POST['statut_matrimonial'])));
     $groupe_sanguin = trim(addslashes(htmlentities($_POST['groupe_sanguin'])));
-
 
     $patient = new \app\DefaultApp\Models\Patient();
     $patient->setId($id);
@@ -64,11 +64,11 @@ if (isset($_POST['modifier_patient'])) {
     $patient->setProfession($profession);
     $patient->setSexe($sexe);
     $patient->setDateNaissance($date_naissance);
-    $patient->setIdentite($identite);
+    $patient->setCin($identite);
     $patient->setTelephone($telephone);
     $patient->setStatutMatrimonial($statut_matrimonial);
     $patient->setGroupeSanguin($groupe_sanguin);
-    $m = $patient->modifier();
+    $m = $patient->enregistrer();
     echo $m;
 
 }

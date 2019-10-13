@@ -16,7 +16,7 @@
                     <div class="card-head">
                         <header>Recherche Patient</header>
                         <div class="tools">
-                            &nbsp;
+                            <?= \systeme\Application\Application::block('tools') ?>
                         </div>
                     </div>
                     <div class="card-body ">
@@ -24,9 +24,10 @@
                             <form class="form-horizontal" method="POST">
                                 <div class="form-group row">
                                     <label for="horizontalFormEmail"
-                                           class="col-sm-3 col-md-3 control-label">Critere</label>
+                                           class="col-sm-3 col-md-3 control-label">Code Patient</label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" placeholder="Critere..." name="critere"
+                                        <input type="text" class="form-control" placeholder="Entrez code" name="critere"
+                                            <?php if (isset($critere)) { ?> value="<?= $critere ?>" <?php } ?>
                                                required>
                                     </div>
                                     <div class="col-sm-2">
@@ -39,57 +40,174 @@
                         <br/><br/>
 
 
-                        <?php if (isset($listePatient)) { ?>
+                        <?php if (isset($listePatient)) {
+                            foreach ($listePatient as $p) { ?>
+
+                                <form role="form" class="form-horizontal" action="ajouter-dossier" method="post"
+                                      enctype="multipart/form-data" id="formulaire_ajouter_patient">
+                                    <input type="hidden" name="ajouter_patient"/>
+                                    <div class="row">
+                                        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3">Code<span
+                                                            class="required"> * </span></label>
+                                                <div class="col-md-5">
+                                                    <input type="text" name="code" class="form-control input-height"
+                                                           value="<?= $p->getCode(); ?>" readonly/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3">Nom
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <input type="text" name="nom" placeholder="nom patient "
+                                                           value="<?= $p->getNom() ?>"
+                                                           class="form-control input-height" required/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3">Prenom
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <input type="text" name="prenom" placeholder="prenom du patient"
+                                                           value="<?= $p->getPrenom() ?>"
+                                                           class="form-control input-height " required/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3">Sexe
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <select class="form-control input-height" name="sexe">
+                                                        <option value="<?= $p->getSexe(); ?>"><?= $p->getSexe(); ?></option>
+                                                        <option value="Masculin">Masculin</option>
+                                                        <option value="Feminin">Feminin</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3">Date Naissance
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <input type="text" name="date_naissance" data-mask="99/99/9999" value="<?= $p->getDateNaissance() ?>"
+                                                           placeholder="dd/mm/yyyy" class="form-control input-height"
+                                                           required>
+                                                    <span class="help-block">jour/mois/année</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3">Addresse
+                                                </label>
+                                                <div class="col-md-5">
+                                        <textarea name="addresse" placeholder="addresse" class="form-control-textarea"
+                                                  rows="5"> <?= $p->getAdresse() ?></textarea>
+                                                </div>
+                                            </div>
 
 
-                            <div class="table-responsive">
-                                <table class="table table-striped custom-table table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th>Code</th>
-                                        <th>CIN</th>
-                                        <th>Nom</th>
-                                        <th>Prénom</th>
-                                        <th>Sexe</th>
-                                        <th>DateNaissance</th>
-                                        <th>Téléphone</th>
-                                        <!--                                    <th>Action</th>-->
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?php
-                                    if (isset($listePatient)) {
-                                        foreach ($listePatient as $p) {
-                                            ?>
-                                            <tr>
-                                                <td><a href="#"><?= strtoupper($p->getCode()) ?></a></td>
-                                                <td><?= $p->getCin(); ?></td>
-                                                <td><?= $p->getNom(); ?></td>
-                                                <td><?= $p->getPrenom(); ?></td>
-                                                <td><?= $p->getSexe(); ?></td>
-                                                <td><?= $p->getDateNaissance(); ?></td>
-                                                <td><?= $p->getTelephone(); ?></td>
-                                                <!--                                    <td>-->
-                                                <!--                                        <button class="btn btn-success btn-xs">-->
-                                                <!--                                            <i class="fa fa-check"></i>-->
-                                                <!--                                        </button>-->
-                                                <!--                                        <button class="btn btn-primary btn-xs">-->
-                                                <!--                                            <i class="fa fa-pencil"></i>-->
-                                                <!--                                        </button>-->
-                                                <!--                                        <button class="btn btn-danger btn-xs">-->
-                                                <!--                                            <i class="fa fa-trash-o "></i>-->
-                                                <!--                                        </button>-->
-                                                <!--                                    </td>-->
-                                            </tr>
+                                        </div>
 
-                                        <?php }
-                                    } ?> </tbody>
+                                        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
 
-                                </table>
-                            </div>
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3">CIN <span
+                                                            class="required"> * </span></label>
+                                                <div class="col-md-5">
+                                                    <input type="text" placeholder="cin" name="cin"  value="<?= $p->getCin() ?>"
+                                                           data-mask="99-99-99-9999-99-99999"
+                                                           class="form-control input-height">
+                                                    <span class="help-block">99-99-99-9999-99-99999</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3">Telephone </label>
+                                                <div class="col-md-5">
+                                                    <input type="text" placeholder="telephone" name="telephone"  value="<?= $p->getTelephone() ?>"
+                                                           data-mask="(999) 9999-9999"
+                                                           class="form-control input-height">
+                                                    <span class="help-block">(999) 9999-9999</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3">Email
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <div class="input-group">
+                                                        <input type="mail" class="form-control input-height"
+                                                               name="email"  value="<?= $p->getEmail() ?>"
+                                                               placeholder="email"></div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3">Statut matrimonial
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <select class="form-control input-height" name="statut_matrimonial">
+                                                        <option value="celibataire"><?= $p->getStatutMatrimonial(); ?></option>
+                                                        <option value="celibataire">Celibataire</option>
+                                                        <option value="mariee">Mariée</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3">Groupe sanguin
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <select class="form-control input-height" name="groupe_sanguin">
+                                                        <option value="<?= $p->getGroupeSanguin() ?>"><?= strtoupper($p->getGroupeSanguin()) ?></option>
+                                                        <option value="a+">A+</option>
+                                                        <option value="a-">A-</option>
+                                                        <option value="b+">B+</option>
+                                                        <option value="b-">B-</option>
+                                                        <option value="ab+">AB+</option>
+                                                        <option value="ab-">AB-</option>
+                                                        <option value="o+">O+</option>
+                                                        <option value="o-">O-</option>
+                                                        <option value="inconnu">Inconnu</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3">Profession
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <input type="text" class="form-control input-height"
+                                                           name="profession"   value="<?= $p->getProfession() ?>"
+                                                           placeholder="profession" name="bp">
+                                                </div>
+                                            </div>
 
 
-                        <?php } ?>
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3">personne de reference
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <input type="text" name="nom_mere" placeholder="nom complet"
+                                                           value="<?= $p->getNomMere() ?>"
+                                                           class="form-control input-height " required/>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+
+                                </form>
+
+
+                            <?php }
+                        } ?>
 
 
                     </div>

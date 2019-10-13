@@ -48,22 +48,35 @@ class DossierControlleur extends Controlleur
             "active12" => "active open"
         );
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $variable['listePatient'] = Patient::Rechercher_All($_POST['critere']);
+            $liste = Patient::Rechercher($_POST['critere']);
+            $variable['critere'] = $_POST['critere'];
+            if (count($liste) == '0') {
+                $variable['notification'] = array("type" => 'warning', "titre" => "Erreur", "message" => "Patient(e) introuvable, <strong>code</strong> incorrect..");
+            } else {
+                $variable['listePatient'] = $liste;
+            }
         }
 
         $this->render("dossier/rechercher", $variable);
     }
+
     public function modifier()
     {
 
         $variable = array(
-            "titre" => "Rechercher Patient",
+            "titre" => "Modifier Patient",
             "entete" => "Patient",
             "active1" => "active open",
             "active13" => "active open"
         );
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $variable['listePatient'] = Patient::Rechercher_All($_POST['critere']);
+            $liste = Patient::Rechercher($_POST['critere']);
+            $variable['critere'] = $_POST['critere'];
+            if (count($liste) == '0') {
+                $variable['notification'] = array("type" => 'warning', "titre" => "Erreur", "message" => "Patient(e) introuvable, <strong>code</strong> incorrect..");
+            } else {
+                $variable['listePatient'] = $liste;
+            }
         }
 
         $this->render("dossier/modifier", $variable);
