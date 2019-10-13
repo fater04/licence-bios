@@ -186,7 +186,7 @@
                                                     <div class="col-md-5">
                                                         <input type="text" class="form-control input-height"
                                                                name="profession" value="<?= $p->getProfession() ?>"
-                                                               placeholder="profession" name="bp">
+                                                               placeholder="profession">
                                                     </div>
                                                 </div>
 

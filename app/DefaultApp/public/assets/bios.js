@@ -69,10 +69,8 @@ $('document').ready(function () {
         }
     });
 }));
-alert('ok');
-    $("#formulaire_modifier_patient").on('submit', (function (e) {
-        // $('#ajax-loading').show();
 
+    $("#formulaire_modifier_patient").on('submit', (function (e) {
         e.preventDefault();
         $.ajax({
             url: "app/DefaultApp/traitements/patient.php",
@@ -108,7 +106,11 @@ alert('ok');
                         "        });\n" +
                         "\n" +
                         "    </script>");
-                    document.location.href = 'modifier-patient';
+                    window.setTimeout(function(){
+
+                        document.location.href = 'modifier-patient';
+
+                    }, 5000);
                 }else{
                     $(".msg_affiche").html("<script type='text/javascript'>\n" +
                         "        $(document).ready(function () {\n" +

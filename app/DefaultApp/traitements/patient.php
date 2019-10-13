@@ -68,7 +68,7 @@ if (isset($_POST['modifier_patient'])) {
     $patient->setTelephone($telephone);
     $patient->setStatutMatrimonial($statut_matrimonial);
     $patient->setGroupeSanguin($groupe_sanguin);
-    $m = $patient->enregistrer();
+    $m = $patient->modifier();
     echo $m;
 
 }
