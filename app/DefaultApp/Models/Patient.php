@@ -252,14 +252,14 @@ class Patient extends Model
         $this->groupe_sanguin = $groupe_sanguin;
     }
 
-    private static function patientExiste($nom, $prenom,$date_naissance,$cin)
+    private static function patientExiste($nom, $prenom, $date_naissance, $cin)
     {
-        $con=self::connection();
-        if($cin==""){
+        $con = self::connection();
+        if ($cin == "") {
             $req = "SELECT *FROM patient WHERE (nom='" . $nom . "' AND prenom='" . $prenom . "'  AND date_naissance='" . $date_naissance . "')";
 
-        }else{
-            $req = "SELECT *FROM patient WHERE (nom='" . $nom . "' AND prenom='" . $prenom . "'  AND date_naissance='" . $date_naissance . "') or cin='".$cin."'";
+        } else {
+            $req = "SELECT *FROM patient WHERE (nom='" . $nom . "' AND prenom='" . $prenom . "'  AND date_naissance='" . $date_naissance . "') or cin='" . $cin . "'";
         }
         $rs = $con->query($req);
         if ($rs->fetch()) {
@@ -268,6 +268,7 @@ class Patient extends Model
             return false;
         }
     }
+
     public static function codePatientExiste($code)
     {
         $con = new DbConnection();
@@ -282,18 +283,20 @@ class Patient extends Model
             return false;
         }
     }
-    private function validerInformation(){
 
-        if($this->nom=="" or !preg_match("#^[a-z-A-Z ]+$#",$this->nom)){
+    private function validerInformation()
+    {
+
+        if ($this->nom == "" or !preg_match("#^[a-z-A-Z ]+$#", $this->nom)) {
             return "nom incorrect";
         }
 
-        if($this->prenom=="" or !preg_match("#^[a-z-A-Z ]+$#",$this->prenom)){
+        if ($this->prenom == "" or !preg_match("#^[a-z-A-Z ]+$#", $this->prenom)) {
             return "prénom incorrect";
 
         }
 
-        if($this->nom_mere=="" or !preg_match("#^[a-z-A-Z ]+$#",$this->nom_mere)){
+        if ($this->nom_mere == "" or !preg_match("#^[a-z-A-Z ]+$#", $this->nom_mere)) {
             return "nom mère incorrect";
         }
 
@@ -301,20 +304,21 @@ class Patient extends Model
             return "profession incorrect";
         }*/
 
-        if(!\app\DefaultApp\DefaultApp::validerDate($this->date_naissance,"d/m/Y")){
+        if (!\app\DefaultApp\DefaultApp::validerDate($this->date_naissance, "d/m/Y")) {
             return "entrer une date correct";
         }
 
-        if( \app\DefaultApp\DefaultApp::calculAge(explode("/",$this->date_naissance)[2])<=0){
+        if (\app\DefaultApp\DefaultApp::calculAge(explode("/", $this->date_naissance)[2]) <= 0) {
             return "entrer une date correct";
         }
 
 
         return true;
     }
+
     public static function idPatient($code)
     {
-        $con=self::connection();
+        $con = self::connection();
         $req = "SELECT *FROM patient WHERE code='" . $code . "'";
         $rs = $con->query($req);
         if ($date = $rs->fetch()) {
@@ -325,103 +329,109 @@ class Patient extends Model
             return "";
         }
     }
-    public function enregistrer(){
-        try{
-            if(self::patientExiste($this->nom,$this->prenom,$this->date_naissance,$this->cin)){
+
+    public function enregistrer()
+    {
+        try {
+            if (self::patientExiste($this->nom, $this->prenom, $this->date_naissance, $this->cin)) {
                 return "Patient existe sur le systeme...";
             }
-            $v=self::validerInformation();
+            $v = self::validerInformation();
 
-            if($v==1){
-                $con=self::connection();
-                $req="insert into patient (
+            if ($v == 1) {
+                $con = self::connection();
+                $req = "insert into patient (
                code,nom,prenom,nom_mere,adresse,email,profession,sexe,date_naissance,cin,telephone,statut_matrimonial,groupe_sanguin) VALUES
               (:code,:nom,:prenom,:nom_mere,:adresse,:email,:profession,:sexe,:date_naissance,:cin,:telephone,:statut_matrimonial,:groupe_sanguin)";
 
-                $param=array(
-                    ":code"=>$this->code,
-                    ":nom"=>$this->nom,
-                    ":prenom"=>$this->prenom,
-                    ":nom_mere"=>$this->nom_mere,
-                    ":adresse"=>$this->adresse,
-                    ":email"=>$this->email,
-                    ":profession"=>$this->profession,
-                    ":sexe"=>$this->sexe,
-                    ":date_naissance"=>$this->date_naissance,
-                    ":cin"=>$this->cin,
-                    ":telephone"=>$this->telephone,
-                    ":statut_matrimonial"=>$this->statut_matrimonial,
-                    ":groupe_sanguin"=>$this->groupe_sanguin
+                $param = array(
+                    ":code" => $this->code,
+                    ":nom" => $this->nom,
+                    ":prenom" => $this->prenom,
+                    ":nom_mere" => $this->nom_mere,
+                    ":adresse" => $this->adresse,
+                    ":email" => $this->email,
+                    ":profession" => $this->profession,
+                    ":sexe" => $this->sexe,
+                    ":date_naissance" => $this->date_naissance,
+                    ":cin" => $this->cin,
+                    ":telephone" => $this->telephone,
+                    ":statut_matrimonial" => $this->statut_matrimonial,
+                    ":groupe_sanguin" => $this->groupe_sanguin
 
                 );
 
-                $stmt=$con->prepare($req);
-                if($stmt->execute($param)){
+                $stmt = $con->prepare($req);
+                if ($stmt->execute($param)) {
                     return "ok";
-                }elsE{
+                } elsE {
                     return "no";
                 }
 
-            }else{
+            } else {
                 return $v;
             }
 
-        }catch (\Exception $ex){
-            return $ex->getMessage();
-        }
-    }
-    public function modifier(){
-        try{
-            $v=self::validerInformation();
-            if($v==1){
-                $con=self::connection();
-                $req="update patient set   code=:code,nom=:nom,prenom=:prenom,nom_mere=:nom_mere,adresse=:adresse,email=:email,profession=:profession,sexe=:sexe,date_naissance=:date_naissance,cin=:cin,telephone=:telephone,statut_matrimonial=:statut_matrimonial,groupe_sanguin=:groupe_sanguin where id=:id";
-
-                $param=array(
-                    ":code"=>$this->code,
-                    ":nom"=>$this->nom,
-                    ":prenom"=>$this->prenom,
-                    ":nom_mere"=>$this->nom_mere,
-                    ":adresse"=>$this->adresse,
-                    ":email"=>$this->email,
-                    ":profession"=>$this->profession,
-                    ":sexe"=>$this->sexe,
-                    ":date_naissance"=>$this->date_naissance,
-                    ":cin"=>$this->cin,
-                    ":telephone"=>$this->telephone,
-                    ":statut_matrimonial"=>$this->statut_matrimonial,
-                    ":groupe_sanguin"=>$this->groupe_sanguin,
-                    ":id"=>$this->id
-                );
-
-                $stmt=$con->prepare($req);
-                if($stmt->execute($param)){
-                    return "ok";
-                }else{
-                    return "no";
-                }
-
-            }else{
-                return $v;
-            }
-
-        }catch (\Exception $ex){
+        } catch (\Exception $ex) {
             return $ex->getMessage();
         }
     }
 
-    public static function lister(){
-        try{
-            $con=self::connection();
-            $req="select *from patient";
-            $stmt=$con->prepare($req);
+    public function modifier()
+    {
+        try {
+            $v = self::validerInformation();
+            if ($v == 1) {
+                $con = self::connection();
+                $req = "update patient set   code=:code,nom=:nom,prenom=:prenom,nom_mere=:nom_mere,adresse=:adresse,email=:email,profession=:profession,sexe=:sexe,date_naissance=:date_naissance,cin=:cin,telephone=:telephone,statut_matrimonial=:statut_matrimonial,groupe_sanguin=:groupe_sanguin where id=:id";
+
+                $param = array(
+                    ":code" => $this->code,
+                    ":nom" => $this->nom,
+                    ":prenom" => $this->prenom,
+                    ":nom_mere" => $this->nom_mere,
+                    ":adresse" => $this->adresse,
+                    ":email" => $this->email,
+                    ":profession" => $this->profession,
+                    ":sexe" => $this->sexe,
+                    ":date_naissance" => $this->date_naissance,
+                    ":cin" => $this->cin,
+                    ":telephone" => $this->telephone,
+                    ":statut_matrimonial" => $this->statut_matrimonial,
+                    ":groupe_sanguin" => $this->groupe_sanguin,
+                    ":id" => $this->id
+                );
+
+                $stmt = $con->prepare($req);
+                if ($stmt->execute($param)) {
+                    return "ok";
+                } else {
+                    return "no";
+                }
+
+            } else {
+                return $v;
+            }
+
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
+        }
+    }
+
+    public static function lister()
+    {
+        try {
+            $con = self::connection();
+            $req = "select *from patient";
+            $stmt = $con->prepare($req);
             $stmt->execute();
-            $res=$stmt->fetchAll(\PDO::FETCH_CLASS,"app\\DefaultApp\\Models\\Patient");
+            $res = $stmt->fetchAll(\PDO::FETCH_CLASS, "app\\DefaultApp\\Models\\Patient");
             return $res;
-        }catch (\Exception $ex){
+        } catch (\Exception $ex) {
             throw new \Exception($ex->getMessage());
         }
     }
+
     public static function Rechercher($critere)
     {
         try {
