@@ -8,7 +8,6 @@
 
 namespace app\DefaultApp\Controlleurs;
 
-
 use app\DefaultApp\Models\RendezVous;
 use systeme\Controlleur\Controlleur;
 
@@ -20,54 +19,64 @@ class RendezVousControlleur extends Controlleur
             "titre" => "Ajouter RendezVous",
             "entete" => "Rendez-Vous",
             "active2" => "active open",
-            "active21" => "active open"
+            "active21" => "active open",
         );
         $this->render("rendezvous/ajouter", $variable);
     }
-/**
+
     public function lister()
     {
         $variable = array(
-            "titre" => "Ajouter Dossier",
-            "entete" => "Patient",
-            "active1" => "active open",
-            "active14" => "active open"
+            "titre" => "Lister RendezVous",
+            "entete" => "Rendez-Vous",
+            "active2" => "active open",
+            "active24" => "active open",
         );
-        $p = new Patient();
-        $variable['listePatient'] = $p->Lister();
-        $this->render("dossier/lister", $variable);
+        $p = new RendezVous();
+        $variable['listeRendezVous'] = $p->Lister();
+        $this->render("rendezvous/lister", $variable);
     }
 
     public function rechercher()
     {
 
         $variable = array(
-            "titre" => "Rechercher Patient",
-            "entete" => "Patient",
-            "active1" => "active open",
-            "active12" => "active open"
+            "titre" => "Rechercher RendezVous",
+            "entete" => "Rendez-Vous",
+            "active2" => "active open",
+            "active22" => "active open",
         );
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $variable['listePatient'] = Patient::Rechercher_All($_POST['critere']);
+            $liste = RendezVous::Rechercher($_POST['critere']);
+            $variable['critere'] = $_POST['critere'];
+            if (count($liste) == '0') {
+                $variable['notification'] = array("type" => 'warning', "titre" => "Erreur", "message" => "RendezVous introuvable, <strong>code</strong> incorrect..");
+            } else {
+                $variable['listeRendezVous'] = $liste;
+            }
         }
 
-        $this->render("dossier/rechercher", $variable);
+        $this->render("rendezvous/rechercher", $variable);
     }
     public function modifier()
     {
 
         $variable = array(
-            "titre" => "Rechercher Patient",
-            "entete" => "Patient",
-            "active1" => "active open",
-            "active13" => "active open"
+            "titre" => "Modifier RendezVous",
+            "entete" => "Rendez-Vous",
+            "active2" => "active open",
+            "active23" => "active open",
         );
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $variable['listePatient'] = Patient::Rechercher_All($_POST['critere']);
+            $liste = RendezVous::Rechercher($_POST['critere']);
+            $variable['critere'] = $_POST['critere'];
+            if (count($liste) == '0') {
+                $variable['notification'] = array("type" => 'warning', "titre" => "Erreur", "message" => "RendezVous introuvable, <strong>code</strong> incorrect..");
+            } else {
+                $variable['listeRendezVous'] = $liste;
+            }
         }
 
-        $this->render("dossier/modifier", $variable);
+        $this->render("rendezvous/modifier", $variable);
     }
-*/
-
 }

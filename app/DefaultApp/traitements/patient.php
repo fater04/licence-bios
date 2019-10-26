@@ -3,7 +3,6 @@ require_once "../../../vendor/autoload.php";
 
 if (isset($_POST['ajouter_patient'])) {
 
-
     $code = trim(addslashes(htmlentities($_POST['code'])));
     $nom = trim(addslashes(htmlentities($_POST['nom'])));
     $prenom = trim(addslashes(htmlentities($_POST['prenom'])));

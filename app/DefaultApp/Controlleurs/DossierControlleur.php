@@ -8,7 +8,6 @@
 
 namespace app\DefaultApp\Controlleurs;
 
-
 use app\DefaultApp\Models\Patient;
 use systeme\Controlleur\Controlleur;
 
@@ -20,7 +19,7 @@ class DossierControlleur extends Controlleur
             "titre" => "Ajouter Dossier",
             "entete" => "Patient",
             "active1" => "active open",
-            "active11" => "active open"
+            "active11" => "active open",
         );
         $this->render("dossier/ajouter", $variable);
     }
@@ -31,7 +30,7 @@ class DossierControlleur extends Controlleur
             "titre" => "Ajouter Dossier",
             "entete" => "Patient",
             "active1" => "active open",
-            "active14" => "active open"
+            "active14" => "active open",
         );
         $p = new Patient();
         $variable['listePatient'] = $p->Lister();
@@ -45,7 +44,7 @@ class DossierControlleur extends Controlleur
             "titre" => "Rechercher Patient",
             "entete" => "Patient",
             "active1" => "active open",
-            "active12" => "active open"
+            "active12" => "active open",
         );
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $liste = Patient::Rechercher($_POST['critere']);
@@ -67,7 +66,7 @@ class DossierControlleur extends Controlleur
             "titre" => "Modifier Patient",
             "entete" => "Patient",
             "active1" => "active open",
-            "active13" => "active open"
+            "active13" => "active open",
         );
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $liste = Patient::Rechercher($_POST['critere']);
@@ -81,6 +80,5 @@ class DossierControlleur extends Controlleur
 
         $this->render("dossier/modifier", $variable);
     }
-
 
 }

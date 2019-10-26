@@ -8,12 +8,11 @@
 
 namespace app\DefaultApp\Models;
 
-
 use systeme\Model\Model;
 
 class RendezVous extends Model
 {
-private $id,$code_patient,$date_rendezvous, $heure_debut,$heure_fin,$id_medecin, $note,$date_creation;
+    private $id, $code_patient, $date_rendezvous, $heure_debut, $heure_fin, $id_medecin, $note, $date_creation;
 
     /**
      * @return mixed
@@ -142,108 +141,111 @@ private $id,$code_patient,$date_rendezvous, $heure_debut,$heure_fin,$id_medecin,
     {
         $this->date_creation = $date_creation;
     }
-    private function validerInformation(){
-
+    private function validerInformation()
+    {
 
 //        if(!\app\DefaultApp\DefaultApp::validerDate($this->date_naissance,"d/m/Y")){
-//            return "entrer une date correct";
-//        }
-//
-//        if( \app\DefaultApp\DefaultApp::calculAge(explode("/",$this->date_naissance)[2])<=0){
-//            return "entrer une date correct";
-//        }
-
+        //            return "entrer une date correct";
+        //        }
+        //
+        //        if( \app\DefaultApp\DefaultApp::calculAge(explode("/",$this->date_naissance)[2])<=0){
+        //            return "entrer une date correct";
+        //        }
 
         return true;
+
     }
-    public function enregistrer(){
-        try{
+    public function enregistrer()
+    {
+        try {
 
-            $v=self::validerInformation();
+            $v = self::validerInformation();
 
-            if($v==1){
-                $con=self::connection();
-                $req="insert into rendezvous (
+            if ($v == 1) {
+                $con = self::connection();
+                $req = "insert into rendezvous (
                code_patient,date_rendezvous,heure_debut,heure_fin,id_medecin,note) VALUES
               (:code_patient,:date_rendezvous,:heure_debut,:heure_fin,:id_medecin,:note)";
 
-                $param=array(
-                    ":code_patient"=>$this->code_patient,
-                    ":date_rendezvous"=>$this->date_rendezvous,
-                    ":heure_debut"=>$this->heure_debut,
-                    ":heure_fin"=>$this->heure_fin,
-                    ":id_medecin"=>$this->id_medecin,
-                    ":note"=>$this->note
+                $param = array(
+                    ":code_patient" => $this->code_patient,
+                    ":date_rendezvous" => $this->date_rendezvous,
+                    ":heure_debut" => $this->heure_debut,
+                    ":heure_fin" => $this->heure_fin,
+                    ":id_medecin" => $this->id_medecin,
+                    ":note" => $this->note,
 
                 );
 
-                $stmt=$con->prepare($req);
-                if($stmt->execute($param)){
+                $stmt = $con->prepare($req);
+                if ($stmt->execute($param)) {
                     return "ok";
-                }elsE{
+                } else {
                     return "no";
                 }
 
-            }else{
+            } else {
                 return $v;
             }
 
-        }catch (\Exception $ex){
+        } catch (\Exception $ex) {
             return $ex->getMessage();
         }
     }
 
-    public function modifier(){
-        try{
-            $v=self::validerInformation();
-            if($v==1){
-                $con=self::connection();
-                $req="update rendezvous set    code_patient=:code_patient,date_rendezvous=:date_rendezvous,heure_debut=:heure_debut,heure_fin=:heure_fin,id_medecin=:id_medecin,note=:note where id=:id";
+    public function modifier()
+    {
+        try {
+            $v = self::validerInformation();
+            if ($v == 1) {
+                $con = self::connection();
+                $req = "update rendezvous set    code_patient=:code_patient,date_rendezvous=:date_rendezvous,heure_debut=:heure_debut,heure_fin=:heure_fin,id_medecin=:id_medecin,note=:note where id=:id";
 
-                $param=array(
-                    ":code_patient"=>$this->code_patient,
-                    ":date_rendezvous"=>$this->date_rendezvous,
-                    ":heure_debut"=>$this->heure_debut,
-                    ":heure_fin"=>$this->heure_fin,
-                    ":id_medecin"=>$this->id_medecin,
-                    ":note"=>$this->note,
-                    ":id"=>$this->id
+                $param = array(
+                    ":code_patient" => $this->code_patient,
+                    ":date_rendezvous" => $this->date_rendezvous,
+                    ":heure_debut" => $this->heure_debut,
+                    ":heure_fin" => $this->heure_fin,
+                    ":id_medecin" => $this->id_medecin,
+                    ":note" => $this->note,
+                    ":id" => $this->id,
                 );
 
-                $stmt=$con->prepare($req);
-                if($stmt->execute($param)){
+                $stmt = $con->prepare($req);
+                if ($stmt->execute($param)) {
                     return "ok";
-                }else{
+                } else {
                     return "no";
                 }
 
-            }else{
+            } else {
                 return $v;
             }
 
-        }catch (\Exception $ex){
+        } catch (\Exception $ex) {
             return $ex->getMessage();
         }
     }
 
-
-    public static function lister(){
-        try{
-            $con=self::connection();
-            $req="select *from rendezvous";
-            $stmt=$con->prepare($req);
+    public static function lister()
+    {
+        try {
+            $con = self::connection();
+            $req = "select *from rendezvous";
+            $stmt = $con->prepare($req);
             $stmt->execute();
-            $res=$stmt->fetchAll(\PDO::FETCH_CLASS,"app\\DefaultApp\\Models\\RendezVous");
+            $res = $stmt->fetchAll(\PDO::FETCH_CLASS, "app\\DefaultApp\\Models\\RendezVous");
             return $res;
-        }catch (\Exception $ex){
+        } catch (\Exception $ex) {
             throw new \Exception($ex->getMessage());
         }
     }
+
     public static function Rechercher($critere)
     {
         try {
             $con = self::connection();
-            $req = "SELECT *FROM rendezvous WHERE id='" . $critere . "' OR code_patient='" . $critere . "' or id_medecin='".$critere."' ";
+            $req = "SELECT *FROM rendezvous WHERE id='" . $critere . "' ";
 
             $stmt = $con->prepare($req);
             $stmt->execute();
@@ -253,6 +255,5 @@ private $id,$code_patient,$date_rendezvous, $heure_debut,$heure_fin,$id_medecin,
             throw new \Exception($ex->getMessage());
         }
     }
-
 
 }
