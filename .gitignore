@@ -1,4 +1,6 @@
 .idea
 .vscode
+app/defaultapp/configuration.php
+app/DefaultApp/configuration.php
 /app/DefaultApp/configuration.php
 \app\DefaultApp\configuration.php
