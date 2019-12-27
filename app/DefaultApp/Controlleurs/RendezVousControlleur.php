@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: fater
@@ -21,6 +22,7 @@ class RendezVousControlleur extends Controlleur
             "active2" => "active open",
             "active21" => "active open",
         );
+
         $this->render("rendezvous/ajouter", $variable);
     }
 

@@ -1,5 +1,20 @@
 $('document').ready(function () {
+    $("#dossier_no").on('input', (function (e) {
+        var val = $("#dossier_no").val();
+       $.ajax({
+            url: "app/DefaultApp/traitements/RendezVous.php?no="+val,
+            type: "GET",
+            data: "",
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function (data) {
+                $("#nomcomplet").val(data);
+            }
+            
+        });
 
+    }));
     // patient
     $("#formulaire_ajouter_patient").on('submit', (function (e) {
         e.preventDefault();

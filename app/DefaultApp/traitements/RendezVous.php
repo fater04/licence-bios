@@ -1,6 +1,13 @@
 <?php
 require_once "../../../vendor/autoload.php";
 
+if (isset($_GET['no'])) {
+    $no = $_GET['no'];
+$r="not Found";
+    $r=\app\DefaultApp\Models\Patient::nomComplet($no);
+    echo $r;
+}
+
 if (isset($_POST['ajouter_rendezvous'])) {
 
     $code = trim(addslashes(htmlentities($_POST['no_dossier'])));
@@ -19,7 +26,6 @@ if (isset($_POST['ajouter_rendezvous'])) {
     $rd->setNote($note);
     $r = $rd->enregistrer();
     echo $r;
-
 }
 
 if (isset($_POST['modifier_rendezvous'])) {
@@ -44,5 +50,4 @@ if (isset($_POST['modifier_rendezvous'])) {
     $rd->setId($id);
     $r = $rd->modifier();
     echo $r;
-
 }

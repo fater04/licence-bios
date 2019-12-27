@@ -26,7 +26,7 @@ $configuration = array(
     "url" => $_GET['url'],
     "database" => $database,
     "configurationEmail"=>$configurationEmail,
-    "dossierProjet" => "v2/licence-bios",
+    "dossierProjet" => "licence-bios",
     "nomApp" => "DefaultApp"
 );
 define("AUTHORIZENET_LOG_FILE", "phplog");

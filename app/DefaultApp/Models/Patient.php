@@ -446,5 +446,16 @@ class Patient extends Model
             throw new \Exception($ex->getMessage());
         }
     }
+     public static function nomComplet($id)
+    {
+        $con = self::connection();
+        $req = "SELECT nom,prenom FROM patient WHERE code='" . $id . "'";
+        $res = $con->query($req);
+        if($data = $res->fetch()){
+        return $data['nom'] . " " . $data['prenom'];
+        }else{
+            return "not Found";
+        }
+    }
 
 }

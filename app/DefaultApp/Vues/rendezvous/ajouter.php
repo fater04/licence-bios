@@ -7,9 +7,7 @@
  * Time: 2:50 PM
  */
 ?>
-
-
-					<div class="row">
+<div class="row">
 						<div class="col-md-12 col-sm-12">
 							<div class="card card-topline-lightblue">
 								<div class="card-head">
@@ -26,8 +24,9 @@
 												<label class="control-label col-md-3">No Dossier
 													<span class="required"> * </span>
 												</label>
+												
 												<div class="col-md-5">
-													<input type="text" name="no_dossier"  placeholder="entrer no Dossier" class="form-control input-height" required />
+													<input type="text" name="no_dossier" id="dossier_no" placeholder="entrer no Dossier" class="form-control input-height" required />
 												</div>
 												</div>
 											</div>
@@ -36,7 +35,7 @@
 													<span class="required"> </span>
 												</label>
 												<div class="col-md-5">
-													<input type="text" name="nom_complet"   class="form-control input-height"  readonly/>
+													<input type="text" name="nom_complet" id="nomcomplet"  class="form-control input-height"  readonly/>
 												</div>
 											</div>
 												<div class="form-group row">

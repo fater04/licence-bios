@@ -51,7 +51,7 @@
 													<span class="required"> * </span>
 												</label>
 												<div class="col-md-5">
-													<input type="text" name="no_dossier"  value="<?=$r1->getCodePatient()?>" placeholder="entrer no Dossier" class="form-control input-height" required />
+													<input type="text" name="no_dossier" id="dossier_no" value="<?=$r1->getCodePatient()?>" placeholder="entrer no Dossier" class="form-control input-height" required />
 												</div>
 												</div>
 											</div>
@@ -60,7 +60,7 @@
 													<span class="required"> </span>
 												</label>
 												<div class="col-md-5">
-													<input type="text" name="nom_complet"   class="form-control input-height"  readonly/>
+													<input type="text" name="nom_complet"  id="nomcomplet" value="<?= \app\DefaultApp\Models\Patient::nomComplet($r1->getCodePatient())?>"  class="form-control input-height"  readonly/>
 												</div>
 											</div>
 												<div class="form-group row">
