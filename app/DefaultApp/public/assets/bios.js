@@ -1,8 +1,8 @@
 $('document').ready(function () {
     $("#dossier_no").on('input', (function (e) {
         var val = $("#dossier_no").val();
-       $.ajax({
-            url: "app/DefaultApp/traitements/RendezVous.php?no="+val,
+        $.ajax({
+            url: "app/DefaultApp/traitements/RendezVous.php?no=" + val,
             type: "GET",
             data: "",
             contentType: false,
@@ -11,7 +11,7 @@ $('document').ready(function () {
             success: function (data) {
                 $("#nomcomplet").val(data);
             }
-            
+
         });
 
     }));

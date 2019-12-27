@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: fater
@@ -14,14 +15,14 @@
 
             </div>
             <div class="card-body" id="bar-parent">
-                <form method="post"  class="form-horizontal" enctype="multipart/form-data">
+                <form method="post" class="form-horizontal" enctype="multipart/form-data">
                     <div class="form-body">
                         <div class="form-group row">
                             <label class="control-label col-md-3">Nom
                                 <span class="required"> * </span>
                             </label>
                             <div class="col-md-5">
-                                <input type="text" name="nom"  placeholder="Nom Utilisateur" class="form-control input-height" required />
+                                <input type="text" name="nom" placeholder="Nom Utilisateur" class="form-control input-height" required />
                             </div>
                         </div>
                         <div class="form-group row">
@@ -29,7 +30,7 @@
                                 <span class="required"> * </span>
                             </label>
                             <div class="col-md-5">
-                                <input type="text" name="prenom"   placeholder="Prenom Utilisateur" class="form-control input-height" required/>
+                                <input type="text" name="prenom" placeholder="Prenom Utilisateur" class="form-control input-height" required />
                             </div>
                         </div>
                         <div class="form-group row">
@@ -37,14 +38,14 @@
                                 <span class="required"> * </span>
                             </label>
                             <div class="col-md-5">
-                                <input type="text"  name="pseudo" placeholder="Pseudo" class="form-control input-height" required/>
+                                <input type="text" name="pseudo" placeholder="Pseudo" class="form-control input-height" required />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="control-label col-md-3">Telephone
                             </label>
                             <div class="col-md-5">
-                                <input type="text" name="telephone"    placeholder="Telephone Utilisateur" class="form-control input-height" />
+                                <input type="text" name="telephone" placeholder="Telephone Utilisateur" class="form-control input-height" />
                             </div>
                         </div>
                         <div class="form-group row">
@@ -53,7 +54,7 @@
                             </label>
                             <div class="col-md-5">
                                 <div class="input-group">
-                                    <input type="email" class="form-control input-height" name="email"   placeholder="Email Utilisateur" required> </div>
+                                    <input type="email" class="form-control input-height" name="email" placeholder="Email Utilisateur" required> </div>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -63,28 +64,48 @@
                                 <input type="file" class="form-control" id="image" name="image" placeholder="Image" accept="image/jpeg">
                             </div>
                         </div>
-
+                        <script>
+                            function myFunction() {
+                                var x = document.getElementById("choix").value;
+                                if (x == "infirmiere" || x == "medecin") {
+                                    document.getElementById('add_cin').style.display = 'block';
+                                } else {
+                                    document.getElementById('add_cin').style.display = 'none';
+                                }
+                            }
+                        </script>
                         <div class="form-group row">
                             <label class="control-label col-md-3">Role
                                 <span class="required"> * </span>
                             </label>
                             <div class="col-md-5">
-                                <select class="form-control input-height" name="role">
+                                <select class="form-control input-height" name="role" id="choix" onChange="myFunction()">
                                     <option value="" aria-selected="true">Select...</option>
+                                    <option value="infirmiere"> Infirmiere</option>
+                                    <option value="medecin">Medecin</option>
                                     <option value="admin"> Administrateur</option>
-                                    <option value="pharmacie"> Pharmacie </option>
-                                    <option value="laboratoire">Laboratoire</option>
-                                    <option value="archive">Archive</option>
+
 
                                 </select>
                             </div>
                         </div>
+                        <div class="form-group" id="add_cin" style="display:none">
+
+                            <div class="row">
+                                <label class="control-label col-md-3">CIN
+                                </label>
+                                <div class="col-md-5">
+                                    <input type="text" name="cin2" class="form-control input-height" />
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="cin1" class="form-control input-height" />
                         <div class="form-group row">
                             <label class="control-label col-md-3">Motdepasse
                                 <span class="required"> * </span>
                             </label>
                             <div class="col-md-5">
-                                <input type="password" name="motdepasse" data-required="1" placeholder="Motdepasse" class="form-control input-height" required/>
+                                <input type="password" name="motdepasse" data-required="1" placeholder="Motdepasse" class="form-control input-height" required />
                             </div>
                         </div>
                         <div class="form-group row">
@@ -92,7 +113,7 @@
                                 <span class="required"> * </span>
                             </label>
                             <div class="col-md-5">
-                                <input type="password"  name="confirmermotdepasse" data-required="1" placeholder="Confirmer motdepasse" class="form-control input-height" required />
+                                <input type="password" name="confirmermotdepasse" data-required="1" placeholder="Confirmer motdepasse" class="form-control input-height" required />
                             </div>
                         </div>
 
@@ -101,8 +122,9 @@
                         <div class="form-actions">
                             <div class="row">
                                 <div class="offset-md-3 col-md-9">
-                                    <input type="submit" class="btn btn-info m-r-20" value="Ajouter"/>
-                                    <input type="reset" class="btn btn-default" value="Annuler"/>
+
+                                    <input type="submit" class="btn btn-info m-r-20" value="Ajouter" />
+                                    <input type="reset" class="btn btn-default" value="Annuler" />
                                 </div>
                             </div>
                         </div>

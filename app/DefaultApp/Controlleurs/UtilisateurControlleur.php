@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: fater
@@ -20,8 +21,8 @@ class UtilisateurControlleur extends Controlleur
         $variable = array(
             "titre" => "Lister Utilisateur",
             "entete" => "Utilisateur",
-            "active0"=>"active open",
-            "active04"=>"active open"
+            "active0" => "active open",
+            "active04" => "active open"
         );
         $user = new Utilisateur();
         $variable['listeUtilisateur'] = $user->Lister();
@@ -34,8 +35,8 @@ class UtilisateurControlleur extends Controlleur
         $variable = array(
             "titre" => "Rechercher Utilisateur",
             "entete" => "Utilisateur",
-            "active0"=>"active open",
-            "active02"=>"active open"
+            "active0" => "active open",
+            "active02" => "active open"
         );
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $variable['listeUtilisateur'] = Utilisateur::Rechercher_All($_POST['critere']);
@@ -51,8 +52,8 @@ class UtilisateurControlleur extends Controlleur
         $variable = array(
             "titre" => "Ajouter Utilisateur",
             "entete" => "Utilisateur",
-            "active0"=>"active open",
-            "active01"=>"active open"
+            "active0" => "active open",
+            "active01" => "active open"
         );
 
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -74,6 +75,11 @@ class UtilisateurControlleur extends Controlleur
             $utlisateur->setActive("oui");
             $utlisateur->setTelephone($_POST['telephone']);
             $utlisateur->setEmail($_POST['email']);
+            if ($_POST['role'] != "admin") {
+                $utlisateur->setCin($_POST['cin2']);
+            } else {
+                $utlisateur->setCin($_POST['cin1']);
+            }
 
             $motdepasse = $_POST['motdepasse'];
             $confirmer = $_POST['confirmermotdepasse'];
@@ -90,18 +96,18 @@ class UtilisateurControlleur extends Controlleur
                     $variable['notification'] = array("type" => 'warning', "titre" => "Message", "message" => $message);
                 }
             }
-
         }
 
         $this->render("utilisateur/ajouter", $variable);
     }
 
-    public function modifier(){
+    public function modifier()
+    {
         $variable = array(
             "titre" => "Modifier Utilisateur",
             "entete" => "Utilisateur",
-            "active0"=>"active open",
-            "active03"=>"active open"
+            "active0" => "active open",
+            "active03" => "active open"
         );
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $variable['listeUtilisateur'] = Utilisateur::Rechercher_All($_POST['critere']);
@@ -114,9 +120,9 @@ class UtilisateurControlleur extends Controlleur
         $variable = array(
             "titre" => "Modifier Utilisateur",
             "entete" => "Utilisateur",
-            "active0"=>"active open",
-            "active03"=>"active open",
-            "id"=>$id
+            "active0" => "active open",
+            "active03" => "active open",
+            "id" => $id
         );
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $utlisateur = $this->getModel("utilisateur");
@@ -126,7 +132,7 @@ class UtilisateurControlleur extends Controlleur
                 $image->Upload();
                 $photo = $image->getSrc();
                 $utlisateur->setPhoto($photo);
-            }else{
+            } else {
                 $utlisateur->setPhoto($_POST['path']);
             }
 
@@ -142,7 +148,7 @@ class UtilisateurControlleur extends Controlleur
             $motdepasse = $_POST['motdepasse'];
             $confirmer = $_POST['confirmermotdepasse'];
 
-            if($motdepasse==""){
+            if ($motdepasse == "") {
                 $message = $utlisateur->modifier1();
                 if ($message == 'ok') {
                     $variable['notification'] = array("type" => 'success', "titre" => "Succes", "message" => "Utilisateur Modifie(e) avec Succes !");
@@ -150,7 +156,7 @@ class UtilisateurControlleur extends Controlleur
                     $variable['erreur'] = $message;
                     $variable['notification'] = array("type" => 'warning', "titre" => "Erreur", "message" => $message);
                 }
-            }else {
+            } else {
                 if ($motdepasse != $confirmer) {
                     $variable['erreur'] = "Verifier les mot de passe";
                 } else {
@@ -164,71 +170,70 @@ class UtilisateurControlleur extends Controlleur
                     }
                 }
             }
-
         }
 
         $this->render("utilisateur/modifier", $variable);
     }
-//
-//        $variable=array();
-//        $variable['titre']="Utilisateur / modifier";
-//        $variable['souMenu']="soumenu_utilisateur";
-//        if($_SERVER['REQUEST_METHOD']=="POST")
-//        {
-//            $utlisateur=$this->getModel("utilisateur");
-//            $utlisateur->setNom($_POST['nom']);
-//            $utlisateur->setPrenom($_POST['prenom']);
-//            $utlisateur->setPseudo($_POST['pseudo']);
-//            $utlisateur->setRole($_POST['role']);
-//            $utlisateur->setActive("oui");
-//            $motdepasse=$_POST['motdepasse'];
-//            $confirmer=$_POST['confirmermotdepasse'];
-//
-//            if($motdepasse!=$confirmer){
-//                $variable['erreur']="Verifier les mot de passe" ;
-//            }else{
-//                $utlisateur->setMotdepasse($motdepasse);
-//
-//                $message=$utlisateur->Enregistrer();
-//                if($message=='Enregistrer avec sucess')
-//                {
-//                    $variable['success']=$message;
-//                }else
-//                {
-//                    $variable['erreur']=$message;
-//                }
-//            }
-//
-//        }
-//
-//        $this->render("utilisateur/modifier",$variable);
-//    }
-//
-//    public function lister()
-//    {
-//        $variable=array();
-//        $variable['titre']="Utilisateur / Lister";
-//        $variable['souMenu']="soumenu_utilisateur";
-//        $variable['listeUtilisateur']=Utilisateur::listeUser();
-//        $this->render("utilisateur/lister",$variable);
-//    }
-//
-//    public function blocker($id)
-//    {
-//        Utilisateur::blocker($id);
-//        CentreSante::redirection("lister_utilisateur");
-//    }
-//
-//    public function deblocker($id)
-//    {
-//        Utilisateur::deblocker($id);
-//        header("location: lister-utilisateur");
-//    }
-//
-//
-//    public function supprimer($id)
-//    {
-//        Utilisateur::Supprimer($id);
-//        header("location: lister-utilisateur");
-//    }
+    //
+    //        $variable=array();
+    //        $variable['titre']="Utilisateur / modifier";
+    //        $variable['souMenu']="soumenu_utilisateur";
+    //        if($_SERVER['REQUEST_METHOD']=="POST")
+    //        {
+    //            $utlisateur=$this->getModel("utilisateur");
+    //            $utlisateur->setNom($_POST['nom']);
+    //            $utlisateur->setPrenom($_POST['prenom']);
+    //            $utlisateur->setPseudo($_POST['pseudo']);
+    //            $utlisateur->setRole($_POST['role']);
+    //            $utlisateur->setActive("oui");
+    //            $motdepasse=$_POST['motdepasse'];
+    //            $confirmer=$_POST['confirmermotdepasse'];
+    //
+    //            if($motdepasse!=$confirmer){
+    //                $variable['erreur']="Verifier les mot de passe" ;
+    //            }else{
+    //                $utlisateur->setMotdepasse($motdepasse);
+    //
+    //                $message=$utlisateur->Enregistrer();
+    //                if($message=='Enregistrer avec sucess')
+    //                {
+    //                    $variable['success']=$message;
+    //                }else
+    //                {
+    //                    $variable['erreur']=$message;
+    //                }
+    //            }
+    //
+    //        }
+    //
+    //        $this->render("utilisateur/modifier",$variable);
+    //    }
+    //
+    //    public function lister()
+    //    {
+    //        $variable=array();
+    //        $variable['titre']="Utilisateur / Lister";
+    //        $variable['souMenu']="soumenu_utilisateur";
+    //        $variable['listeUtilisateur']=Utilisateur::listeUser();
+    //        $this->render("utilisateur/lister",$variable);
+    //    }
+    //
+    //    public function blocker($id)
+    //    {
+    //        Utilisateur::blocker($id);
+    //        CentreSante::redirection("lister_utilisateur");
+    //    }
+    //
+    //    public function deblocker($id)
+    //    {
+    //        Utilisateur::deblocker($id);
+    //        header("location: lister-utilisateur");
+    //    }
+    //
+    //
+    //    public function supprimer($id)
+    //    {
+    //        Utilisateur::Supprimer($id);
+    //        header("location: lister-utilisateur");
+    //    }
 }

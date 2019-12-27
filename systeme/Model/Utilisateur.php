@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: ALCINDOR LOSTHELVEN
@@ -19,6 +20,7 @@ class Utilisateur extends Model
     private $prenom;
     private $role;
     private $active;
+    private $cin;
     private $motdepasse;
     private $statut;
     private $telephone;
@@ -27,12 +29,27 @@ class Utilisateur extends Model
     /**
      * @return mixed
      */
+    public function getCin()
+    {
+        return strtolower($this->cin);
+    }
+
+    /**
+     * @param mixed $cin
+     */
+    public function setCin($cin)
+    {
+        $this->cin = (trim(addslashes(strtolower($cin))));
+    }
+    /**
+     * @return mixed
+     */
     public function getTelephone()
     {
         return $this->telephone;
     }
 
-    /**
+    /**s
      * @param mixed $telephone
      */
     public function setTelephone($telephone)
@@ -129,7 +146,6 @@ class Utilisateur extends Model
         } else {
             $this->email = "";
         }
-
     }
 
     /**
@@ -279,7 +295,6 @@ class Utilisateur extends Model
             $con = null;
             return false;
         }
-
     }
 
 
@@ -299,7 +314,6 @@ class Utilisateur extends Model
             $con = null;
             return false;
         }
-
     }
 
 
@@ -312,12 +326,11 @@ class Utilisateur extends Model
         try {
             if (self::SiPseudoExiste($this->getPseudo())) {
                 return "pseudo existe";
-            }elseif(self::SiEmailExiste($this->getEmail()))
-            {
+            } elseif (self::SiEmailExiste($this->getEmail())) {
                 return "email existe";
-            }else {
-                $req = "INSERT INTO utilisateur (pseudo, email, role, nom, prenom, motdepasse, active,photo,telephone) VALUES 
-        ('" . $this->pseudo . "','" . $this->email . "','" . $this->role . "','" . $this->nom . "','" . $this->prenom . "','" . $this->motdepasse . "','" . $this->active . "','" . $this->photo . "','" . $this->telephone . "')";
+            } else {
+                $req = "INSERT INTO utilisateur (pseudo, email, role, nom, prenom, motdepasse, active,photo,telephone,cin) VALUES 
+        ('" . $this->pseudo . "','" . $this->email . "','" . $this->role . "','" . $this->nom . "','" . $this->prenom . "','" . $this->motdepasse . "','" . $this->active . "','" . $this->photo . "','" . $this->telephone . "','" . $this->cin . "')";
                 if (self::connection()->query($req)) {
                     $con = null;
                     return "ok";
@@ -329,8 +342,6 @@ class Utilisateur extends Model
         } catch (\Exception $ex) {
             return $ex->getMessage();
         }
-
-
     }
 
 
@@ -348,15 +359,14 @@ class Utilisateur extends Model
             $stmt = $con->prepare($req);
             $stmt->execute();
             $data = $stmt->fetchAll(\PDO::FETCH_CLASS, "systeme\Model\Utilisateur");
-            if(count($data)>0){
+            if (count($data) > 0) {
                 return $data[0];
-            }else{
+            } else {
                 return null;
             }
         } catch (Exception $ex) {
             throw new \Exception($ex->getMessage());
         }
-
     }
 
 
@@ -387,7 +397,7 @@ class Utilisateur extends Model
                             return "ok";
                         }
                     }
-                }else {
+                } else {
                     return "Nom Utilisateur Ou motdepasse incorect";
                 }
             } else {
@@ -396,7 +406,6 @@ class Utilisateur extends Model
         } catch (Exception $ex) {
             throw new Exception($ex->getMessage());
         }
-
     }
 
 
@@ -429,7 +438,6 @@ class Utilisateur extends Model
         } else {
             return false;
         }
-
     }
 
     /**
@@ -444,7 +452,6 @@ class Utilisateur extends Model
         } else {
             return null;
         }
-
     }
 
 
@@ -454,7 +461,7 @@ class Utilisateur extends Model
     public function modifier()
     {
 
-        $req = "UPDATE utilisateur SET nom='" . $this->nom . "', prenom='" . $this->prenom . "'
+        $req = "UPDATE utilisateur SET cin='" . $this->cin . "',  nom='" . $this->nom . "', prenom='" . $this->prenom . "'
         ,motdepasse='" . $this->motdepasse . "',telephone='" . $this->telephone . "',photo='" . $this->photo . "' WHERE id='" . $this->id . "'";
         if (self::connection()->query($req)) {
             $con = null;
@@ -467,7 +474,7 @@ class Utilisateur extends Model
     public function modifier1()
     {
 
-        $req = "UPDATE utilisateur SET nom='" . $this->nom . "', prenom='" . $this->prenom . "'
+        $req = "UPDATE utilisateur SET cin='" . $this->cin . "',nom='" . $this->nom . "', prenom='" . $this->prenom . "'
         ,telephone='" . $this->telephone . "',photo='" . $this->photo . "' WHERE id='" . $this->id . "'";
         if (self::connection()->query($req)) {
             $con = null;
@@ -484,7 +491,7 @@ class Utilisateur extends Model
     public  function Lister()
     {
         try {
-                      $con = self::connection();
+            $con = self::connection();
             $req = "SELECT *FROM utilisateur";
             $stmt = $con->prepare($req);
             $stmt->execute();
@@ -573,7 +580,7 @@ class Utilisateur extends Model
     public static function avatar($pseudo)
     {
         $con = self::connection();
-        $req = "SELECT photo FROM utilisateur where pseudo='".$pseudo."'";
+        $req = "SELECT photo FROM utilisateur where pseudo='" . $pseudo . "'";
         $rps = $con->query($req);
         $data = $rps->fetch();
         $id = $data['photo'];
@@ -638,6 +645,4 @@ class Utilisateur extends Model
         $con = null;
         return $id;
     }
-
-
 }
