@@ -1,5 +1,6 @@
 .idea
 .vscode
+configuration.php # matches all files 'configuration.php' in any directory
 app/defaultapp/configuration.php
 app/DefaultApp/configuration.php
 /app/DefaultApp/configuration.php
