@@ -106,6 +106,7 @@
                                                     <div class="col-md-5">
                                                         <input type="text" placeholder="cin" name="cin" readonly value="<?= $p->getCin() ?>" data-mask="99-99-99-9999-99-99999" class="form-control input-height">
                                                         <span class="help-block">99-99-99-9999-99-99999</span>
+                                                        <input type="hidden" name="nif" value="" />
                                                     </div>
                                                 </div>
                                             <?php } ?>
@@ -115,6 +116,7 @@
                                                     <label class="control-label col-md-3">NIF</label>
                                                     <div class="col-md-5">
                                                         <input type="text" placeholder="nif" name="nif" id="nif_val" readonly value="<?= $p->getNif(); ?>" data-mask="999-999-999-9" class="form-control input-height">
+                                                        <input type="hidden" name="cin" value="" />
                                                         <span class="help-block">999-999-999-9</span>
                                                     </div>
                                                 </div>
@@ -176,10 +178,9 @@
 
                                             <div class="form-group row">
                                                 <label class="control-label col-md-3">personne de reference
-                                                    <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <input type="text" name="nom_mere" placeholder="nom complet" value="<?= $p->getNomMere() ?>" class="form-control input-height " required />
+                                                    <input type="text" name="nom_mere" placeholder="nom complet" value="<?= $p->getNomMere() ?>" class="form-control input-height " />
                                                 </div>
                                             </div>
                                             <div class="form-actions">
