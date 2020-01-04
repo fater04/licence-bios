@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: fater
@@ -23,12 +24,9 @@
                         <div class="offset-lg-2 offset-md-2 col-md-6  col-lg-6 col-sm-12">
                             <form class="form-horizontal" method="POST">
                                 <div class="form-group row">
-                                    <label for="horizontalFormEmail"
-                                           class="col-sm-3 col-md-3 control-label">Code Patient</label>
+                                    <label for="horizontalFormEmail" class="col-sm-3 col-md-3 control-label">Code Patient</label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" placeholder="Entrez code" name="critere"
-                                            <?php if (isset($critere)) { ?> value="<?= $critere ?>" <?php } ?>
-                                               required>
+                                        <input type="text" class="form-control" placeholder="Entrez code" name="critere" <?php if (isset($critere)) { ?> value="<?= $critere ?>" <?php } ?> required>
                                     </div>
                                     <div class="col-sm-2">
                                         <button type="submit" class="btn btn-info m-r-20">Rechercher</button>
@@ -37,24 +35,21 @@
 
                             </form>
                         </div>
-                        <br/><br/>
+                        <br /><br />
 
 
                         <?php if (isset($listePatient)) {
                             foreach ($listePatient as $p) { ?>
 
-                                <form role="form" class="form-horizontal" action="ajouter-dossier" method="post"
-                                      enctype="multipart/form-data" id="formulaire_ajouter_patient">
-                                    <input type="hidden" name="ajouter_patient"/>
+                                <form role="form" class="form-horizontal" action="ajouter-dossier" method="post" enctype="multipart/form-data" id="formulaire_ajouter_patient">
+                                    <input type="hidden" name="ajouter_patient" />
                                     <div class="row">
                                         <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
 
                                             <div class="form-group row">
-                                                <label class="control-label col-md-3">Code<span
-                                                            class="required"> * </span></label>
+                                                <label class="control-label col-md-3">Code<span class="required"> * </span></label>
                                                 <div class="col-md-5">
-                                                    <input type="text" name="code" class="form-control input-height"
-                                                           value="<?= $p->getCode(); ?>" readonly/>
+                                                    <input type="text" name="code" class="form-control input-height" value="<?= $p->getCode(); ?>" readonly />
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -62,9 +57,7 @@
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <input type="text" name="nom" placeholder="nom patient "
-                                                           value="<?= $p->getNom() ?>"
-                                                           class="form-control input-height" required/>
+                                                    <input type="text" name="nom" placeholder="nom patient " value="<?= $p->getNom() ?>" class="form-control input-height" required />
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -72,9 +65,7 @@
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <input type="text" name="prenom" placeholder="prenom du patient"
-                                                           value="<?= $p->getPrenom() ?>"
-                                                           class="form-control input-height " required/>
+                                                    <input type="text" name="prenom" placeholder="prenom du patient" value="<?= $p->getPrenom() ?>" class="form-control input-height " required />
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -94,9 +85,7 @@
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <input type="text" name="date_naissance" data-mask="99/99/9999" value="<?= $p->getDateNaissance() ?>"
-                                                           placeholder="dd/mm/yyyy" class="form-control input-height"
-                                                           required>
+                                                    <input type="text" name="date_naissance" data-mask="99/99/9999" value="<?= $p->getDateNaissance() ?>" placeholder="dd/mm/yyyy" class="form-control input-height" required>
                                                     <span class="help-block">jour/mois/année</span>
                                                 </div>
                                             </div>
@@ -104,8 +93,7 @@
                                                 <label class="control-label col-md-3">Addresse
                                                 </label>
                                                 <div class="col-md-5">
-                                        <textarea name="addresse" placeholder="addresse" class="form-control-textarea"
-                                                  rows="5"> <?= $p->getAdresse() ?></textarea>
+                                                    <textarea name="addresse" placeholder="addresse" class="form-control-textarea" rows="5"> <?= $p->getAdresse() ?></textarea>
                                                 </div>
                                             </div>
 
@@ -114,22 +102,31 @@
 
                                         <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
 
-                                            <div class="form-group row">
-                                                <label class="control-label col-md-3">CIN <span
-                                                            class="required"> * </span></label>
-                                                <div class="col-md-5">
-                                                    <input type="text" placeholder="cin" name="cin"  value="<?= $p->getCin() ?>"
-                                                           data-mask="99-99-99-9999-99-99999"
-                                                           class="form-control input-height">
-                                                    <span class="help-block">99-99-99-9999-99-99999</span>
+                                            <?php if ($p->getCin() != "") { ?>
+
+                                                <div class="form-group row">
+                                                    <label class="control-label col-md-3">CIN <span class="required"> * </span></label>
+                                                    <div class="col-md-5">
+                                                        <input type="text" placeholder="cin" name="cin" readonly value="<?= $p->getCin() ?>" data-mask="99-99-99-9999-99-99999" class="form-control input-height">
+                                                        <span class="help-block">99-99-99-9999-99-99999</span>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            <?php } ?>
+                                            <?php if ($p->getNif() != "") { ?>
+
+                                                <div class="form-group row" id="nif_affiche">
+                                                    <label class="control-label col-md-3">NIF</label>
+                                                    <div class="col-md-5">
+                                                        <input type="text" placeholder="nif" name="nif" id="nif_val" readonly value="<?= $p->getNif(); ?>" data-mask="999-999-999-9" class="form-control input-height">
+                                                        <span class="help-block">999-999-999-9</span>
+                                                    </div>
+                                                </div>
+                                            <?php } ?>
+
                                             <div class="form-group row">
                                                 <label class="control-label col-md-3">Telephone </label>
                                                 <div class="col-md-5">
-                                                    <input type="text" placeholder="telephone" name="telephone"  value="<?= $p->getTelephone() ?>"
-                                                           data-mask="(999) 9999-9999"
-                                                           class="form-control input-height">
+                                                    <input type="text" placeholder="telephone" name="telephone" value="<?= $p->getTelephone() ?>" data-mask="(999) 9999-9999" class="form-control input-height">
                                                     <span class="help-block">(999) 9999-9999</span>
                                                 </div>
                                             </div>
@@ -139,9 +136,7 @@
                                                 </label>
                                                 <div class="col-md-5">
                                                     <div class="input-group">
-                                                        <input type="mail" class="form-control input-height"
-                                                               name="email"  value="<?= $p->getEmail() ?>"
-                                                               placeholder="email"></div>
+                                                        <input type="mail" class="form-control input-height" name="email" value="<?= $p->getEmail() ?>" placeholder="email"></div>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -180,9 +175,7 @@
                                                 <label class="control-label col-md-3">Profession
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <input type="text" class="form-control input-height"
-                                                           name="profession"   value="<?= $p->getProfession() ?>"
-                                                           placeholder="profession" name="bp">
+                                                    <input type="text" class="form-control input-height" name="profession" value="<?= $p->getProfession() ?>" placeholder="profession" name="bp">
                                                 </div>
                                             </div>
 
@@ -192,9 +185,7 @@
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <input type="text" name="nom_mere" placeholder="nom complet"
-                                                           value="<?= $p->getNomMere() ?>"
-                                                           class="form-control input-height " required/>
+                                                    <input type="text" name="nom_mere" placeholder="nom complet" value="<?= $p->getNomMere() ?>" class="form-control input-height " required />
                                                 </div>
                                             </div>
 
@@ -206,7 +197,7 @@
                                 </form>
 
 
-                            <?php }
+                        <?php }
                         } ?>
 
 

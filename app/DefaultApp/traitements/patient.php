@@ -12,7 +12,8 @@ if (isset($_POST['ajouter_patient'])) {
     $profession = trim(addslashes(htmlentities($_POST['profession'])));
     $sexe = trim(addslashes(htmlentities($_POST['sexe'])));
     $date_naissance = trim(addslashes(htmlentities($_POST['date_naissance'])));
-    $identite = trim(addslashes(htmlentities($_POST['cin'])));
+    $identite1 = trim(addslashes(htmlentities($_POST['cin'])));
+    $identite2 = trim(addslashes(htmlentities($_POST['nif'])));
     $telephone = trim(addslashes(htmlentities($_POST['telephone'])));
     $statut_matrimonial = trim(addslashes(htmlentities($_POST['statut_matrimonial'])));
     $groupe_sanguin = trim(addslashes(htmlentities($_POST['groupe_sanguin'])));
@@ -27,7 +28,8 @@ if (isset($_POST['ajouter_patient'])) {
     $patient->setProfession($profession);
     $patient->setSexe($sexe);
     $patient->setDateNaissance($date_naissance);
-    $patient->setCin($identite);
+    $patient->setCin($identite1);
+    $patient->setNif($identite2);
     $patient->setTelephone($telephone);
     $patient->setStatutMatrimonial($statut_matrimonial);
     $patient->setGroupeSanguin($groupe_sanguin);
@@ -47,7 +49,8 @@ if (isset($_POST['modifier_patient'])) {
     $profession = trim(addslashes(htmlentities($_POST['profession'])));
     $sexe = trim(addslashes(htmlentities($_POST['sexe'])));
     $date_naissance = trim(addslashes(htmlentities($_POST['date_naissance'])));
-    $identite = trim(addslashes(htmlentities($_POST['cin'])));
+    $identite1 = trim(addslashes(htmlentities($_POST['cin'])));
+    $identite2 = trim(addslashes(htmlentities($_POST['nif'])));
     $telephone = trim(addslashes(htmlentities($_POST['telephone'])));
     $statut_matrimonial = trim(addslashes(htmlentities($_POST['statut_matrimonial'])));
     $groupe_sanguin = trim(addslashes(htmlentities($_POST['groupe_sanguin'])));
@@ -63,13 +66,13 @@ if (isset($_POST['modifier_patient'])) {
     $patient->setProfession($profession);
     $patient->setSexe($sexe);
     $patient->setDateNaissance($date_naissance);
-    $patient->setCin($identite);
+    $patient->setCin($identite1);
+    $patient->setNif($identite2);
     $patient->setTelephone($telephone);
     $patient->setStatutMatrimonial($statut_matrimonial);
     $patient->setGroupeSanguin($groupe_sanguin);
     $m = $patient->modifier();
     echo $m;
-
 }
 
 if (isset($_POST['rechercherPatient'])) {
@@ -82,7 +85,7 @@ if (isset($_POST['rechercherPatient'])) {
     }
     $id_patient = $patient->getId();
     echo "<script>document.location.href='rechercher-patient-$id_patient'</script>";
-    ?>
+?>
 
     <?php
 }

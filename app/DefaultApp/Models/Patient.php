@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: fater
@@ -24,6 +25,7 @@ class Patient extends Model
     private $sexe;
     private $date_naissance;
     private $cin;
+    private $nif;
     private $telephone;
     private $statut_matrimonial;
     private $groupe_sanguin;
@@ -207,6 +209,23 @@ class Patient extends Model
     /**
      * @return mixed
      */
+    public function getNif()
+    {
+        return $this->nif;
+    }
+
+    /**
+     * @param mixed $nif
+     */
+    public function setNif($nif)
+    {
+        $this->nif = $nif;
+    }
+
+
+    /**
+     * @return mixed
+     */
     public function getTelephone()
     {
         return $this->telephone;
@@ -257,7 +276,6 @@ class Patient extends Model
         $con = self::connection();
         if ($cin == "") {
             $req = "SELECT *FROM patient WHERE (nom='" . $nom . "' AND prenom='" . $prenom . "'  AND date_naissance='" . $date_naissance . "')";
-
         } else {
             $req = "SELECT *FROM patient WHERE (nom='" . $nom . "' AND prenom='" . $prenom . "'  AND date_naissance='" . $date_naissance . "') or cin='" . $cin . "'";
         }
@@ -293,22 +311,18 @@ class Patient extends Model
 
         if ($this->prenom == "" or !preg_match("#^[a-z-A-Z ]+$#", $this->prenom)) {
             return "prénom incorrect";
-
         }
 
-        if ($this->nom_mere == "" or !preg_match("#^[a-z-A-Z ]+$#", $this->nom_mere)) {
-            return "nom mère incorrect";
-        }
 
-        /*if(!preg_match("#^[ a-z A-Z ]+$#",$this->profession)){
-            return "profession incorrect";
-        }*/
 
         if (!\app\DefaultApp\DefaultApp::validerDate($this->date_naissance, "d/m/Y")) {
             return "entrer une date correct";
         }
 
-        if (\app\DefaultApp\DefaultApp::calculAge(explode("/", $this->date_naissance)[2]) <= 0) {
+        if (\app\DefaultApp\DefaultApp::calculAge($this->date_naissance) <= 0) {
+            return "entrer une date correct";
+        }
+        if (\app\DefaultApp\DefaultApp::calculAge($this->date_naissance) > 125) {
             return "entrer une date correct";
         }
 
@@ -341,8 +355,8 @@ class Patient extends Model
             if ($v == 1) {
                 $con = self::connection();
                 $req = "insert into patient (
-               code,nom,prenom,nom_mere,adresse,email,profession,sexe,date_naissance,cin,telephone,statut_matrimonial,groupe_sanguin) VALUES
-              (:code,:nom,:prenom,:nom_mere,:adresse,:email,:profession,:sexe,:date_naissance,:cin,:telephone,:statut_matrimonial,:groupe_sanguin)";
+               code,nom,prenom,nom_mere,adresse,email,profession,sexe,date_naissance,cin,nif,telephone,statut_matrimonial,groupe_sanguin) VALUES
+              (:code,:nom,:prenom,:nom_mere,:adresse,:email,:profession,:sexe,:date_naissance,:cin,:nif,:telephone,:statut_matrimonial,:groupe_sanguin)";
 
                 $param = array(
                     ":code" => $this->code,
@@ -355,6 +369,7 @@ class Patient extends Model
                     ":sexe" => $this->sexe,
                     ":date_naissance" => $this->date_naissance,
                     ":cin" => $this->cin,
+                    ":nif" => $this->nif,
                     ":telephone" => $this->telephone,
                     ":statut_matrimonial" => $this->statut_matrimonial,
                     ":groupe_sanguin" => $this->groupe_sanguin
@@ -364,14 +379,12 @@ class Patient extends Model
                 $stmt = $con->prepare($req);
                 if ($stmt->execute($param)) {
                     return "ok";
-                } elsE {
+                } else {
                     return "no";
                 }
-
             } else {
                 return $v;
             }
-
         } catch (\Exception $ex) {
             return $ex->getMessage();
         }
@@ -383,7 +396,7 @@ class Patient extends Model
             $v = self::validerInformation();
             if ($v == 1) {
                 $con = self::connection();
-                $req = "update patient set   code=:code,nom=:nom,prenom=:prenom,nom_mere=:nom_mere,adresse=:adresse,email=:email,profession=:profession,sexe=:sexe,date_naissance=:date_naissance,cin=:cin,telephone=:telephone,statut_matrimonial=:statut_matrimonial,groupe_sanguin=:groupe_sanguin where id=:id";
+                $req = "update patient set   code=:code,nom=:nom,prenom=:prenom,nom_mere=:nom_mere,adresse=:adresse,email=:email,profession=:profession,sexe=:sexe,date_naissance=:date_naissance,cin=:cin,nif=:nif,telephone=:telephone,statut_matrimonial=:statut_matrimonial,groupe_sanguin=:groupe_sanguin where id=:id";
 
                 $param = array(
                     ":code" => $this->code,
@@ -396,6 +409,7 @@ class Patient extends Model
                     ":sexe" => $this->sexe,
                     ":date_naissance" => $this->date_naissance,
                     ":cin" => $this->cin,
+                    ":nif" => $this->nif,
                     ":telephone" => $this->telephone,
                     ":statut_matrimonial" => $this->statut_matrimonial,
                     ":groupe_sanguin" => $this->groupe_sanguin,
@@ -408,11 +422,9 @@ class Patient extends Model
                 } else {
                     return "no";
                 }
-
             } else {
                 return $v;
             }
-
         } catch (\Exception $ex) {
             return $ex->getMessage();
         }
@@ -436,7 +448,7 @@ class Patient extends Model
     {
         try {
             $con = self::connection();
-            $req = "SELECT *FROM patient WHERE id='" . $critere . "' OR code='" . $critere . "' ";
+            $req = "SELECT *FROM patient WHERE code='" . $critere . "' ";
 
             $stmt = $con->prepare($req);
             $stmt->execute();
@@ -446,16 +458,15 @@ class Patient extends Model
             throw new \Exception($ex->getMessage());
         }
     }
-     public static function nomComplet($id)
+    public static function nomComplet($id)
     {
         $con = self::connection();
         $req = "SELECT nom,prenom FROM patient WHERE code='" . $id . "'";
         $res = $con->query($req);
-        if($data = $res->fetch()){
-        return $data['nom'] . " " . $data['prenom'];
-        }else{
+        if ($data = $res->fetch()) {
+            return $data['nom'] . " " . $data['prenom'];
+        } else {
             return "not Found";
         }
     }
-
 }

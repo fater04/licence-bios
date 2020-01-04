@@ -24,7 +24,7 @@
                                 <thead>
                                     <tr>
                                         <th>Code</th>
-                                        <th>CIN</th>
+                                        <th>CIN / NIF</th>
                                         <th>Nom</th>
                                         <th>Prénom</th>
                                         <th>Sexe</th>
@@ -37,10 +37,14 @@
                                     <?php
                                     if (isset($listePatient)) {
                                         foreach ($listePatient as $p) {
-                                            ?>
+                                    ?>
                                             <tr>
                                                 <td><a href="#"><?= strtoupper($p->getCode()) ?></a></td>
-                                                <td><?= $p->getCin(); ?></td>
+                                                <td><?php if ($p->getCin() != "") {
+                                                        echo $p->getCin();
+                                                    } else {
+                                                        echo   $p->getNif();
+                                                    } ?></td>
                                                 <td><?= $p->getNom(); ?></td>
                                                 <td><?= $p->getPrenom(); ?></td>
                                                 <td><?= $p->getSexe(); ?></td>

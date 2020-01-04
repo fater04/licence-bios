@@ -1,4 +1,20 @@
 $('document').ready(function () {
+
+
+    $("#cin").change(function () {
+        $('#nif_affiche').hide();
+        $("#cin_val").val("");
+        $('#cin_affiche').show();
+
+    });
+    $("#nif").change(function () {
+        $("#nif_val").val("");
+        $("#nif_affiche").show();
+        $("#cin_affiche").hide();
+    });
+    4
+
+
     $("#dossier_no").on('input', (function (e) {
         var val = $("#dossier_no").val();
         $.ajax({

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: ALCINDOR LOSTHELVEN
@@ -52,7 +53,6 @@ class Application extends Session
         self::$assette = new Assette();
         self::$config = $configuration;
         self::$serveurId = $seesion->getServeurId();
-
     }
 
     public static function get($chemin, $fonction, $nom = "")
@@ -92,7 +92,6 @@ class Application extends Session
         } catch (\Exception $ex) {
             throw new \Exception($ex->getMessage());
         }
-
     }
 
     public static function connection()
@@ -192,9 +191,11 @@ class Application extends Session
 
     public static function calculAge($anne)
     {
-        $anneeAjourdhui = date("Y");
-        $age = $anneeAjourdhui - $anne;
-        return $age;
+
+        $am = explode('/', $anne);
+        $an = explode('/', date('d/m/Y'));
+        if (($am[1] < $an[1]) || (($am[1] == $an[1]) && ($am[0] <= $an[0]))) return $an[2] - $am[2];
+        return $an[2] - $am[2] - 1;
     }
 
 
@@ -208,7 +209,6 @@ class Application extends Session
         $pmac = strpos($mycom, $findme);
         $mac = substr($mycom, ($pmac + 36), 17);
         return $mac;
-
     }
 
     public static function CallAPI($method, $url, $data, $headers)
@@ -274,5 +274,4 @@ class Application extends Session
         $url = '' . $_SERVER['HTTP_HOST'] . '/' . $_SERVER['REQUEST_URI'] . '';
         return $url;
     }
-
 }
