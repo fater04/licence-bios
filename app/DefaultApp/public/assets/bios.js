@@ -12,7 +12,26 @@ $('document').ready(function () {
         $("#nif_affiche").show();
         $("#cin_affiche").hide();
     });
-    4
+    $("#dateN").mouseleave(function () {
+        var val = $("#dateN").val();
+        $.ajax({
+            url: "app/DefaultApp/traitements/patient.php?age=" + val,
+            type: "GET",
+            data: "",
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function (data) {
+                if (data < "18") {
+                    $("#majeur_mineur").hide();
+                }
+                if (data >= "18") {
+                    $("#majeur_mineur").show();
+                }
+            }
+
+        });
+    });
 
 
     $("#dossier_no").on('input', (function (e) {
@@ -34,6 +53,7 @@ $('document').ready(function () {
     // patient
     $("#formulaire_ajouter_patient").on('submit', (function (e) {
         e.preventDefault();
+        var code = $('#codeP').val();
         $.ajax({
             url: "app/DefaultApp/traitements/patient.php",
             type: "POST",
@@ -68,6 +88,7 @@ $('document').ready(function () {
                         "\n" +
                         "    </script>");
                     $('#formulaire_ajouter_patient')[0].reset();
+                    $("#codeP").val('1' + code);
                 } else {
                     $(".msg_affiche").html("<script type='text/javascript'>\n" +
                         "        $(document).ready(function () {\n" +

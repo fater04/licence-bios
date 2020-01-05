@@ -25,7 +25,7 @@
                             <div class="form-group row">
                                 <label class="control-label col-md-3">Code</label>
                                 <div class="col-md-5">
-                                    <input type="text" name="code" class="form-control input-height" value="<?= rand(10, 999) ?>-<?= date('dm') ?>" readonly />
+                                    <input type="text" name="code" id="codeP" class="form-control input-height" value="<?= rand(10, 999) ?>-<?= date('dm') ?>" readonly />
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -57,7 +57,7 @@
                                 <label class="control-label col-md-3">Date Naissance
                                 </label>
                                 <div class="col-md-5">
-                                    <input type="text" name="date_naissance" data-mask="99/99/9999" placeholder="dd/mm/yyyy" class="form-control input-height" required>
+                                    <input type="text" id="dateN" name="date_naissance" data-mask="99/99/9999" placeholder="dd/mm/yyyy" class="form-control input-height" required>
                                     <span class="help-block">jour/mois/année</span>
                                 </div>
                             </div>
@@ -73,7 +73,7 @@
                         </div>
 
                         <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
-                            <div class="form-group row">
+                            <div class="form-group row" id="majeur_mineur">
                                 <div class="col-md-3"></div>
                                 <label class="radio-inline col-md-2">
                                     <input type="radio" name="optradio" id="cin">&nbsp;CIN

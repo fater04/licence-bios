@@ -1,5 +1,10 @@
 <?php
 require_once "../../../vendor/autoload.php";
+if (isset($_GET['age'])) {
+    $no = $_GET['age'];
+    $r = \app\DefaultApp\DefaultApp::calculAge($no);
+    echo $r;
+}
 
 if (isset($_POST['ajouter_patient'])) {
 
