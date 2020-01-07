@@ -85,37 +85,34 @@
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <div class="row ">
+                                                                    <div class="row disabled">
                                                                         <div class="col-md-6 col-lg-6 ">
 
                                                                             <div class="form-group row">
-                                                                                <label class="control-label col-md-3">Code<span class="required"> * </span></label>
+                                                                                <label class="control-label col-md-3">Code</label>
                                                                                 <div class="col-md-5">
                                                                                     <input type="text" name="code" class="form-control input-height" value="<?= $p->getCode(); ?>" readonly />
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group row">
                                                                                 <label class="control-label col-md-3">Nom
-                                                                                    <span class="required"> * </span>
                                                                                 </label>
                                                                                 <div class="col-md-5">
-                                                                                    <input type="text" name="nom" placeholder="nom patient " value="<?= $p->getNom() ?>" class="form-control input-height" required />
+                                                                                    <input type="text" name="nom" placeholder="nom patient " readonly value="<?= $p->getNom() ?>" class="form-control input-height" required />
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group row">
                                                                                 <label class="control-label col-md-3">Prenom
-                                                                                    <span class="required"> * </span>
                                                                                 </label>
                                                                                 <div class="col-md-5">
-                                                                                    <input type="text" name="prenom" placeholder="prenom du patient" value="<?= $p->getPrenom() ?>" class="form-control input-height " required />
+                                                                                    <input type="text" name="prenom" placeholder="prenom du patient" readonly value="<?= $p->getPrenom() ?>" class="form-control input-height " required />
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group row">
                                                                                 <label class="control-label col-md-3">Sexe
-                                                                                    <span class="required"> * </span>
                                                                                 </label>
                                                                                 <div class="col-md-5">
-                                                                                    <select class="form-control input-height" name="sexe">
+                                                                                    <select class="form-control input-height" name="sexe" readonly>
                                                                                         <option value="<?= $p->getSexe(); ?>"><?= $p->getSexe(); ?></option>
                                                                                         <option value="Masculin">Masculin</option>
                                                                                         <option value="Feminin">Feminin</option>
@@ -124,18 +121,18 @@
                                                                             </div>
                                                                             <div class="form-group row">
                                                                                 <label class="control-label col-md-3">Date Naissance
-                                                                                    <span class="required"> * </span>
+                                                                                    <!-- <span class="required"> * </span> -->
                                                                                 </label>
                                                                                 <div class="col-md-5">
-                                                                                    <input type="text" name="date_naissance" data-mask="99/99/9999" value="<?= $p->getDateNaissance() ?>" placeholder="dd/mm/yyyy" class="form-control input-height" required>
-                                                                                    <span class="help-block">jour/mois/année</span>
+                                                                                    <input type="text" readonly name="date_naissance" data-mask="99/99/9999" value="<?= $p->getDateNaissance() ?>" placeholder="dd/mm/yyyy" class="form-control input-height" required>
+                                                                                    <!-- <span class="help-block">jour/mois/année</span> -->
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group row">
                                                                                 <label class="control-label col-md-3">Addresse
                                                                                 </label>
                                                                                 <div class="col-md-5">
-                                                                                    <textarea name="addresse" placeholder="addresse" class="form-control-textarea" rows="5"> <?= $p->getAdresse() ?></textarea>
+                                                                                    <textarea name="addresse" readonly placeholder="addresse" class="form-control-textarea" rows="5"> <?= $p->getAdresse() ?></textarea>
                                                                                 </div>
                                                                             </div>
 
@@ -147,10 +144,10 @@
                                                                             <?php if ($p->getCin() != "") { ?>
 
                                                                                 <div class="form-group row">
-                                                                                    <label class="control-label col-md-3">CIN <span class="required"> * </span></label>
+                                                                                    <label class="control-label col-md-3">CIN </label>
                                                                                     <div class="col-md-5">
                                                                                         <input type="text" placeholder="cin" name="cin" readonly value="<?= $p->getCin() ?>" data-mask="99-99-99-9999-99-99999" class="form-control input-height">
-                                                                                        <span class="help-block">99-99-99-9999-99-99999</span>
+                                                                                        <!-- <span class="help-block">99-99-99-9999-99-99999</span> -->
                                                                                     </div>
                                                                                 </div>
                                                                             <?php } ?>
@@ -159,8 +156,8 @@
                                                                                 <div class="form-group row" id="nif_affiche">
                                                                                     <label class="control-label col-md-3">NIF</label>
                                                                                     <div class="col-md-5">
-                                                                                        <input type="text" placeholder="nif" name="nif" id="nif_val" readonly value="<?= $p->getNif(); ?>" data-mask="999-999-999-9" class="form-control input-height">
-                                                                                        <span class="help-block">999-999-999-9</span>
+                                                                                        <input type="text" placeholder="nif" name="nif" readonly id="nif_val" readonly value="<?= $p->getNif(); ?>" data-mask="999-999-999-9" class="form-control input-height">
+                                                                                        <!-- <span class="help-block">999-999-999-9</span> -->
                                                                                     </div>
                                                                                 </div>
                                                                             <?php } ?>
@@ -168,8 +165,8 @@
                                                                             <div class="form-group row">
                                                                                 <label class="control-label col-md-3">Telephone </label>
                                                                                 <div class="col-md-5">
-                                                                                    <input type="text" placeholder="telephone" name="telephone" value="<?= $p->getTelephone() ?>" data-mask="(999) 9999-9999" class="form-control input-height">
-                                                                                    <span class="help-block">(999) 9999-9999</span>
+                                                                                    <input type="text" placeholder="telephone" name="telephone" readonly value="<?= $p->getTelephone() ?>" data-mask="(999) 9999-9999" class="form-control input-height">
+                                                                                    <!-- <span class="help-block">(999) 9999-9999</span> -->
                                                                                 </div>
                                                                             </div>
 
@@ -178,15 +175,15 @@
                                                                                 </label>
                                                                                 <div class="col-md-5">
                                                                                     <div class="input-group">
-                                                                                        <input type="mail" class="form-control input-height" name="email" value="<?= $p->getEmail() ?>" placeholder="email"></div>
+                                                                                        <input type="mail" class="form-control input-height" name="email" readonly value="<?= $p->getEmail() ?>" placeholder="email"></div>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group row">
                                                                                 <label class="control-label col-md-3">Statut matrimonial
-                                                                                    <span class="required"> * </span>
+                                                                                    <!-- <span class="required"> * </span> -->
                                                                                 </label>
                                                                                 <div class="col-md-5">
-                                                                                    <select class="form-control input-height" name="statut_matrimonial">
+                                                                                    <select class="form-control input-height" name="statut_matrimonial" readonly>
                                                                                         <option value="celibataire"><?= $p->getStatutMatrimonial(); ?></option>
                                                                                         <option value="celibataire">Celibataire</option>
                                                                                         <option value="mariee">Mariée</option>
@@ -196,10 +193,9 @@
 
                                                                             <div class="form-group row">
                                                                                 <label class="control-label col-md-3">Groupe sanguin
-                                                                                    <span class="required"> * </span>
                                                                                 </label>
                                                                                 <div class="col-md-5">
-                                                                                    <select class="form-control input-height" name="groupe_sanguin">
+                                                                                    <select class="form-control input-height" name="groupe_sanguin" readonly>
                                                                                         <option value="<?= $p->getGroupeSanguin() ?>"><?= strtoupper($p->getGroupeSanguin()) ?></option>
                                                                                         <option value="a+">A+</option>
                                                                                         <option value="a-">A-</option>
@@ -217,17 +213,16 @@
                                                                                 <label class="control-label col-md-3">Profession
                                                                                 </label>
                                                                                 <div class="col-md-5">
-                                                                                    <input type="text" class="form-control input-height" name="profession" value="<?= $p->getProfession() ?>" placeholder="profession" name="bp">
+                                                                                    <input type="text" class="form-control input-height" name="profession" readonly value="<?= $p->getProfession() ?>" placeholder="profession" name="bp">
                                                                                 </div>
                                                                             </div>
 
 
                                                                             <div class="form-group row">
                                                                                 <label class="control-label col-md-3">personne de reference
-                                                                                    <span class="required"> * </span>
                                                                                 </label>
                                                                                 <div class="col-md-5">
-                                                                                    <input type="text" name="nom_mere" placeholder="nom complet" value="<?= $p->getNomMere() ?>" class="form-control input-height " required />
+                                                                                    <input type="text" name="nom_mere" placeholder="nom complet" readonly value="<?= $p->getNomMere() ?>" class="form-control input-height " required />
                                                                                 </div>
                                                                             </div>
 

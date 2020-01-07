@@ -448,7 +448,7 @@ class Patient extends Model
     {
         try {
             $con = self::connection();
-            $req = "SELECT *FROM patient WHERE code like '%" . $critere . "%' or nom like '%" . $critere . "%' or prenom like '%" . $critere . "%' or nom_mere like '%" . $critere . "%' or email  like '%" . $critere . "%' or profession like '%" . $critere . "%' or sexe='" . $critere . "' or cin='" . $critere . "' or nif='" . $critere . "' or telephone='" . $critere . "' ";
+            $req = "SELECT *FROM patient WHERE code ='" . $critere . "' or nom='" . $critere . "' or prenom= '" . $critere . "' or nom_mere = '" . $critere . "' or email= '" . $critere . "' or profession ='" . $critere . "' or sexe='" . $critere . "' or cin='" . $critere . "' or nif='" . $critere . "' or telephone='" . $critere . "' ";
             $stmt = $con->prepare($req);
             $stmt->execute();
             $data = $stmt->fetchAll(\PDO::FETCH_CLASS, "app\DefaultApp\Models\Patient");
@@ -457,6 +457,7 @@ class Patient extends Model
             throw new \Exception($ex->getMessage());
         }
     }
+
     public static function nomComplet($id)
     {
         $con = self::connection();
