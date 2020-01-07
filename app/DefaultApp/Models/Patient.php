@@ -448,8 +448,7 @@ class Patient extends Model
     {
         try {
             $con = self::connection();
-            $req = "SELECT *FROM patient WHERE code='" . $critere . "' ";
-
+            $req = "SELECT *FROM patient WHERE code like '%" . $critere . "%' or nom like '%" . $critere . "%' or prenom like '%" . $critere . "%' or nom_mere like '%" . $critere . "%' or email  like '%" . $critere . "%' or profession like '%" . $critere . "%' or sexe='" . $critere . "' or cin='" . $critere . "' or nif='" . $critere . "' or telephone='" . $critere . "' ";
             $stmt = $con->prepare($req);
             $stmt->execute();
             $data = $stmt->fetchAll(\PDO::FETCH_CLASS, "app\DefaultApp\Models\Patient");

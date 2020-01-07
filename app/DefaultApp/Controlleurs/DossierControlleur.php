@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: fater
@@ -50,7 +51,7 @@ class DossierControlleur extends Controlleur
             $liste = Patient::Rechercher($_POST['critere']);
             $variable['critere'] = $_POST['critere'];
             if (count($liste) == '0') {
-                $variable['notification'] = array("type" => 'warning', "titre" => "Erreur", "message" => "Patient(e) introuvable, <strong>code</strong> incorrect..");
+                $variable['notification'] = array("type" => 'warning', "titre" => "Erreur", "message" => "<strong>Patient(e)</strong> introuvable !!!");
             } else {
                 $variable['listePatient'] = $liste;
             }
@@ -80,5 +81,4 @@ class DossierControlleur extends Controlleur
 
         $this->render("dossier/modifier", $variable);
     }
-
 }
