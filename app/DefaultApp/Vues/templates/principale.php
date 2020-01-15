@@ -28,7 +28,8 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
 
         <link href="<?=app::autre("assets/bootstrap-datepicker/css/bootstrap-datepicker.min.css")?>" rel="stylesheet"
             type="text/css" />
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 
         <link href="<?=app::autre("assets/material/material.min.css")?>" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="<?=app::autre("css/material_style.css")?>" />
