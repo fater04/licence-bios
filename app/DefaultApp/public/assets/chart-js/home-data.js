@@ -36,8 +36,8 @@ $(document).ready(function() {
         }
     }
     ;
-    var ctx=document.getElementById("chartjs_line").getContext("2d");
-    window.myLine=new Chart(ctx, config);
+    //var ctx=document.getElementById("chartjs_line").getContext("2d");
+    //window.myLine=new Chart(ctx, config);
 }
 
 );
@@ -90,7 +90,7 @@ $(document).ready(function() {
         }
     };
 
-        var ctx = document.getElementById("chartjs_doughnut").getContext("2d");
-        window.myDoughnut = new Chart(ctx, config);
+        //var ctx = document.getElementById("chartjs_doughnut").getContext("2d");
+        //window.myDoughnut = new Chart(ctx, config);
     
 	});

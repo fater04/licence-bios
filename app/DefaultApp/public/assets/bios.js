@@ -1,12 +1,12 @@
 $("document").ready(function() {
   $("#dateR").datepicker({
-    format: "mm/dd/yyyy",
+    format: "yyyy-mm-dd",
     startDate: "+0d",
     endDate: "+1m"
   });
 
 
-$('#Hstart').timepicker({
+/*$('#Hstart').timepicker({
     timeFormat: 'h:mm p',
     interval: 60,
     minTime: '10',
@@ -17,6 +17,8 @@ $('#Hstart').timepicker({
     dropdown: true,
     scrollbar: true
 });
+
+
 $('#Hend').timepicker({
     timeFormat: 'h:mm p',
     interval: 60,
@@ -27,9 +29,7 @@ $('#Hend').timepicker({
     dynamic: false,
     dropdown: true,
     scrollbar: true
-});
-
-
+});*/
 
   $("#cin").change(function() {
     $("#nif_affiche").hide();
@@ -62,7 +62,6 @@ $('#Hend').timepicker({
   });
 
   $("#dossier_no").on("input", function(e) {
-    alert("test");
     var val = $("#dossier_no").val();
     $.ajax({
       url: "app/DefaultApp/traitements/RendezVous.php?no=" + val,
@@ -72,7 +71,14 @@ $('#Hend').timepicker({
       cache: false,
       processData: false,
       success: function(data) {
-        $("#nomcomplet").val(data);
+        if(data.trim()==='nf'){
+          $("#nomcomplet").val("");
+          $(".btn_ajouter").css("display","none");
+        }else{
+          $("#nomcomplet").val(data);
+          $(".btn_ajouter").css("display","inline");
+        }
+
       }
     });
   });
@@ -224,7 +230,6 @@ $('#Hend').timepicker({
   });
 
   // rendezvous
-
   $("#formulaire_ajoutez_rendevous").on("submit", function(e) {
     e.preventDefault();
     $.ajax({
@@ -235,7 +240,10 @@ $('#Hend').timepicker({
       cache: false,
       processData: false,
       success: function(data) {
-        if (data.trim() == "ok") {
+        data=$.parseJSON(data);
+        if (data.message === "ok") {
+          var id=data.id;
+          $(".message").html("<div class='alert alert-success'>Rendez-Vous ajoute avec Succes !<br> No rendez-vous : "+id+" </div>");
           // $('#ajax-loading').hide();
           $(".msg_affiche").html(
             "<script type='text/javascript'>\n" +
@@ -262,13 +270,16 @@ $('#Hend').timepicker({
               "\n" +
               "    </script>"
           );
+          setTimeout(function () {
+            $(".message").html("");
+          },5000);
           $("#formulaire_ajoutez_rendevous")[0].reset();
         } else {
           $(".msg_affiche").html(
             "<script type='text/javascript'>\n" +
               "        $(document).ready(function () {\n" +
               "            toastr['error']('" +
-              data +
+              data.message +
               "', 'Erreur', {\n" +
               "                'closeButton': true,\n" +
               "                'debug': true,\n" +

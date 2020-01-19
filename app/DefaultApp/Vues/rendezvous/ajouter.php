@@ -16,6 +16,7 @@
 
             <div class="card-body" id="bar-parent">
 
+                <div class="message"></div>
                 <form id="formulaire_ajoutez_rendevous" class="form-horizontal" method="post">
                     <input type="hidden" name="ajouter_rendezvous" />
                     <div class="form-body">
@@ -23,10 +24,9 @@
                             <label class="control-label col-md-3">No Dossier
                                 <span class="required"> * </span>
                             </label>
-
                             <div class="col-md-5">
                                 <input type="text" name="no_dossier" id="dossier_no" placeholder="entrer no Dossier"
-                                    class="form-control input-height" required />
+                                    class="form-control input-height dossier_no" required />
                             </div>
                         </div>
                     </div>
@@ -99,7 +99,7 @@
             <div class="form-actions">
                 <div class="row">
                     <div class="offset-md-3 col-md-9">
-                        <button type="submit" class="btn btn-info m-r-20">Ajouter</button>
+                        <button type="submit" class="btn btn-info m-r-20 btn_ajouter">Ajouter</button>
                         <button type="reset" class="btn btn-default">Annuler</button>
                     </div>
                 </div>

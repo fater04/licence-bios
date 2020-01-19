@@ -637,7 +637,7 @@ if (isset($contenue)) {
 
         </div>
 
-        <script src="<?php echo app::autre("") ?>"></script>
+        <script src="<?php echo app::autre("js/los_script") ?>"></script>
 
 
     </body>

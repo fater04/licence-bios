@@ -15,13 +15,11 @@
                 <span class="info-box-icon push-bottom"><i class="fa fa-folder"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Rendez-Vous</span>
-                    <span class="info-box-number">450</span>
+                    <span class="info-box-number"><?= \app\DefaultApp\Models\RendezVous::total(); ?></span>
                     <div class="progress">
                         <div class="progress-bar" style="width: 45%"></div>
                     </div>
-                    <span class="progress-description">
-											45% Increase in 28 Days
-										</span>
+                    <span class="progress-description"><?= \app\DefaultApp\Models\RendezVous::totalJour(); ?> Pour aujourd'hui</span>
                 </div>
                 <!-- /.info-box-content -->
             </div>

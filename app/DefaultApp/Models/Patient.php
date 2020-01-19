@@ -469,4 +469,29 @@ class Patient extends Model
             return "not Found";
         }
     }
+
+
+    public static function rechercherParCode($code)
+    {
+        try {
+            $con = self::connection();
+            $req = "SELECT *FROM patient WHERE code=:code";
+            $stmt = $con->prepare($req);
+            $stmt->execute(
+                array(
+                    ":code"=>$code
+                )
+            );
+
+            $data = $stmt->fetchAll(\PDO::FETCH_CLASS, "app\DefaultApp\Models\Patient");
+            if(count($data)>0){
+                return $data[0];
+            }
+
+            return null;
+
+        } catch (\Exception $ex) {
+            throw new \Exception($ex->getMessage());
+        }
+    }
 }
