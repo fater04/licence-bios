@@ -297,11 +297,15 @@ class RendezVous extends Model
     {
         try {
             $con = self::connection();
-            $req="select *from rendezvous where id_medecin='".$id_medecin."' and date_debut between '".$debut."' and '".$fin."'
-             or date_fin between '".$debut."' and '".$fin."'";
+            $req="select *from rendezvous where id_medecin=:id_medecin and date_debut between :debut and :fin
+             or date_fin between :debut and :fin ";
 
             $stmt=$con->prepare($req);
-            $stmt->execute();
+            $stmt->execute(array(
+                ":debut"=>$debut,
+                ":fin"=>$fin,
+                ":id_medecin"=>$id_medecin
+            ));
             $data=$stmt->fetchAll(\PDO::FETCH_CLASS,"app\DefaultApp\Models\RendezVous");
             if(count($data)>0){
                 return $data[0];
