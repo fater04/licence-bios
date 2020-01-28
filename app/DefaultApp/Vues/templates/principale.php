@@ -420,9 +420,9 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
     echo $active51;
 }
 ?>  ">
-                                            <a href="<?=\systeme\Application\Application::genererUrl("affecter_salle")?>"
+                                            <a href="<?=\systeme\Application\Application::genererUrl("ajouter_salle")?>"
                                                 class="nav-link "><i class="fa fa-plus"></i> <span
-                                                    class="title">Affecter Salle</span>
+                                                    class="title">Ajouter Salle</span>
                                             </a>
                                         </li>
                                         <li class="nav-item   <?php if (isset($active52)) {

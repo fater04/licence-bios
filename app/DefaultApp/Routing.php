@@ -43,8 +43,8 @@ App::get("/modifier-rendezvous", "rendezvous.modifier", "modifier_rendezvous");
 App::post("/modifier-rendezvous", "rendezvous.modifier");
 
 // attribution salle
-App::get("/affecter-salle", "salle.ajouter", "affecter_salle");
-App::post("/affecter-salle", "salle.ajouter");
+App::get("/ajouter-salle", "salle.ajouter", "ajouter_salle");
+App::post("/ajouter-salle", "salle.ajouter");
 App::get("/lister-salle", "salle.lister", "lister_salle");
 App::get("/rechercher-salle", "salle.rechercher", "rechercher_salle");
 App::post("/rechercher-salle", "salle.rechercher");

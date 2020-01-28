@@ -22,7 +22,7 @@
 									<form class="form-horizontal">
 										<div class="form-body">
 											<div class="form-group row">
-												<label class="control-label col-md-3">numero chambre
+												<label class="control-label col-md-3">numero Salle
 													<span class="required"> * </span>
 												</label>
 												<div class="col-md-5">
@@ -30,51 +30,53 @@
 												</div>
 											</div>
 											<div class="form-group row">
-												<label class="control-label col-md-3">numero Patient
+												<label class="control-label col-md-3">numero Dossier
 													<span class="required"> * </span>
 												</label>
 												<div class="col-md-5">
 													<input type="text" name="firstname" data-required="1" placeholder="entrer numero " class="form-control input-height" />
 												</div>
 											</div>
-											<div class="form-group row">
-												<label class="control-label col-md-3">Type chambre
-													<span class="required"> * </span>
-												</label>
-												<div class="col-md-5">
-													<select class="form-control input-height" name="select">
-														<option value="">Select...</option>
-														<option value="Category 1">General</option>
-														<option value="Category 2">Delux</option>
-														<option value="Category 3">Soins Intensifs</option>
-													</select>
-												</div>
-											</div>
-											
-											<div class="form-group row">
-												<label class="control-label col-md-3"> Date Allocation
-													<span class="required"> * </span>
-												</label>
-												<div class="input-append date" id="dp1">
-													<input class="formDatePicker" placeholder="Date Allocation" size="44" type="text" readonly>
-													<span class="add-on"><i class="fa fa-calendar"></i></span>
-												</div>
-											</div>
-											<div class="form-group row">
-												<label class="control-label col-md-3">Date liberation
-													<span class="required"> * </span>
-												</label>
-												<div class="input-append date" id="dp2">
-													<input class="formDatePicker" placeholder="Date liberation" size="44" type="text" readonly>
-													<span class="add-on"><i class="fa fa-calendar"></i></span>
-												</div>
-											</div>
-										</div>
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3">Nom Complet Patient
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <input type="text" name="firstname" data-required="1" value="JHON SMITH" class="form-control input-height"  readonly/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3">numero Chambre
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <input type="text" name="firstname" data-required="1" placeholder="entrer numero " class="form-control input-height" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3">Maladie
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <input type="text" name="firstname" data-required="1" placeholder="entrer maladie" class="form-control input-height" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3"> Date Affectation
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <input type="text" name="firstname" data-required="1" placeholder="entrer maladie" class="form-control input-height"value="<?= date('d.m.Y H:i:s')?>"readonly />
+                                                </div>
+                                            </div>
+
+
 										<div class="form-actions">
 											<div class="row">
 												<div class="offset-md-3 col-md-9">
-													<button type="submit" class="btn btn-info m-r-20">Affecter</button>
-													<button type="button" class="btn btn-info">Annuler</button>
+													<button type="submit" class="btn btn-info m-r-20">Submit</button>
+													<button type="button" class="btn btn-info">Cancel</button>
 												</div>
 											</div>
 										</div>

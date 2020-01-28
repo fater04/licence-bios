@@ -12,7 +12,7 @@
     <div class="col-md-12">
         <div class="card card-topline-lightblue">
             <div class="card-head">
-                <header>Liste des RendezVous</header>
+                <header>Liste des Salles</header>
                 <?= \systeme\Application\Application::block('tools') ?>
             </div>
 
@@ -22,12 +22,9 @@
                     <table class="table table-striped custom-table table-hover">
                         <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>No Dossier</th>
-                            <th>Date_RendezVous</th>
-                            <th>HEURE</th>
-                            <th>MEDECIN</th>
-                            <th>NOTE</th>
+                            <th>NO SALLE</th>
+                            <th>TYPE</th>
+                            <th>NBRE DE LIT</th>
                             <th>Date_Ajout</th>
                         </tr>
                         </thead>

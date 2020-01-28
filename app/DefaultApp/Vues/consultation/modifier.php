@@ -12,7 +12,7 @@
             <div class="col-md-12">
                 <div class="card card-topline-lightblue">
                     <div class="card-head">
-                        <header>Modifier RendezVous</header>
+                        <header>Modifier Consultation</header>
                         <div class="tools">
                             <?=\systeme\Application\Application::block('tools')?>
                         </div>

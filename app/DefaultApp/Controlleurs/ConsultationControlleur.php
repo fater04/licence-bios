@@ -11,8 +11,8 @@ class ConsultationControlleur extends Controlleur
     public function ajouter()
     {
         $variable = array(
-            "titre" => "consultation",
-            "entete" => "consultation",
+            "titre" => "ajouter consultation",
+            "entete" => "Ajouter Consultation",
             "active4" => "active open",
             "active41" => "active open",
         );
@@ -22,8 +22,8 @@ class ConsultationControlleur extends Controlleur
     public function modifier()
     {
         $variable = array(
-            "titre" => "consultation",
-            "entete" => "consultation",
+            "titre" => "modifier consultation",
+            "entete" => "Modifier consultation",
             "active4" => "active open",
             "active42" => "active open",
         );
@@ -33,8 +33,8 @@ class ConsultationControlleur extends Controlleur
     public function rechercher()
     {
         $variable = array(
-            "titre" => "consultation",
-            "entete" => "consultation",
+            "titre" => "rechercher consultation",
+            "entete" => "Rechercher Consultation",
             "active4" => "active open",
             "active43" => "active open",
         );
@@ -44,8 +44,8 @@ class ConsultationControlleur extends Controlleur
     public function lister()
     {
         $variable = array(
-            "titre" => "consultation",
-            "entete" => "consultation",
+            "titre" => "lister consultation",
+            "entete" => "Liste des Consultation",
             "active4" => "active open",
             "active44" => "active open",
         );

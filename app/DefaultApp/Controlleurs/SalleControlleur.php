@@ -18,7 +18,7 @@ class SalleControlleur extends Controlleur
     {
         $variable = array(
             "titre" => "Ajouter Salle",
-            "entete" => "Salle",
+            "entete" => "Ajouter Salle",
             "active5" => "active open",
             "active51" => "active open"
         );
@@ -28,8 +28,8 @@ class SalleControlleur extends Controlleur
     public function modifier()
     {
         $variable = array(
-            "titre" => "salle",
-            "entete" => "salle",
+            "titre" => "modifier salle",
+            "entete" => "Modifier Salle",
             "active5" => "active open",
             "active52" => "active open",
         );
@@ -39,8 +39,8 @@ class SalleControlleur extends Controlleur
     public function rechercher()
     {
         $variable = array(
-            "titre" => "salle",
-            "entete" => "salle",
+            "titre" => "rechercher salle",
+            "entete" => "Rechercher Salle",
             "active5" => "active open",
             "active53" => "active open",
         );
@@ -50,8 +50,8 @@ class SalleControlleur extends Controlleur
     public function lister()
     {
         $variable = array(
-            "titre" => "salle",
-            "entete" => "salle",
+            "titre" => "lister salle",
+            "entete" => "Lister des Salle",
             "active5" => "active open",
             "active54" => "active open",
         );

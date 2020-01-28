@@ -22,8 +22,8 @@ class AdmissionControlleur extends Controlleur
     public function modifier()
     {
         $variable = array(
-            "titre" => "Admission",
-            "entete" => "Admission",
+            "titre" => "Modifier Admission",
+            "entete" => "Modifier Admission",
             "active3" => "active open",
             "active32" => "active open",
         );
@@ -33,9 +33,9 @@ class AdmissionControlleur extends Controlleur
     public function rechercher()
     {
         $variable = array(
-            "titre" => "Admission",
-            "entete" => "Admission",
-            "active3" => "active open",
+            "titre" => "Rechercher Admission",
+            "entete" => "Rechercher Admission",
+            "active3" => "actrive open",
             "active33" => "active open",
         );
 
@@ -44,8 +44,8 @@ class AdmissionControlleur extends Controlleur
     public function lister()
     {
         $variable = array(
-            "titre" => "Admission",
-            "entete" => "Admission",
+            "titre" => "Lister Admission",
+            "entete" => "Lister des admissions",
             "active3" => "active open",
             "active34" => "active open",
         );

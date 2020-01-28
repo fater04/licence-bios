@@ -10,7 +10,7 @@
     <div class="col-md-12 col-sm-12">
         <div class="card card-topline-lightblue">
             <div class="card-head">
-                <header>Ajouter Rendez-Vous</header>
+                <header>Ajouter Consultation</header>
                 <?=\systeme\Application\Application::block('tools')?>
             </div>
 
@@ -21,50 +21,41 @@
                     <input type="hidden" name="ajouter_rendezvous" />
                     <div class="form-body">
                         <div class="form-group row">
-                            <label class="control-label col-md-3">No Dossier
+                            <label class="control-label col-md-3">Code
                                 <span class="required"> * </span>
                             </label>
                             <div class="col-md-5">
-                                <input type="text" name="no_dossier" id="dossier_no" placeholder="entrer no Dossier"
+                                <input type="text" name="no_dossier" id="dossier_no" placeholder="entrer code"
                                     class="form-control input-height dossier_no" required />
                             </div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="control-label col-md-3"> Nom Complet
+                        <label class="control-label col-md-3"> Type
                             <span class="required"> </span>
                         </label>
                         <div class="col-md-5">
-                            <input type="text" name="nom_complet" id="nomcomplet" class="form-control input-height"
-                                readonly />
+                            <select name="type" class="form-control" required>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="control-label col-md-3">Date Rendez-Vous
+                        <label class="control-label col-md-3">numero Dossier
                             <span class="required"> * </span>
                         </label>
-                        <div class="input-append date col-md-5" id="dp1">
-                            <input class="form-control" placeholder="Date Rendez-Vous" size="44" name="date_rendezvous"
-                                id="dateR" type="text" readonly require="required">
-
+                        <div class="col-md-5">
+                            <input type="text" name="firstname" data-required="1" placeholder="entrer numero dossier " class="form-control input-height" />
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="control-label col-md-3">De</label>
-
+                        <label class="control-label col-md-3">Nom Complet Patient
+                            <span class="required"> * </span>
+                        </label>
                         <div class="col-md-5">
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <input class="form-control input-height" type="text" name="h_start" id="Hstart"
-                                        value="13:45">
-                                </div>
-                                <label class="control-label small-label col-md-2">A </label>
-
-                                <div class="col-md-5">
-                                    <input class="form-control input-height" type="text" name="h_end" id="Hend"
-                                        value="13:45">
-                                </div>
-                            </div>
+                            <input type="text" name="firstname" data-required="1" value="JHON SMITH" class="form-control input-height"  readonly/>
                         </div>
                     </div>
 
@@ -87,7 +78,7 @@
 
 
                     <div class="form-group row">
-                        <label class="control-label col-md-3">Notes
+                        <label class="control-label col-md-3">Prescription
                             <span class="required"> * </span>
                         </label>
                         <div class="col-md-5">
