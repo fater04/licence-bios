@@ -34,14 +34,33 @@ App::post("/rechercher-patient", "dossier.rechercher");
 App::get("/modifier-patient", "dossier.modifier", "modifier_patient");
 App::post("/modifier-patient", "dossier.modifier");
 // rendez-vous
-App::get("/Ajouter-RendezVous", "rendezVous.ajouter", "ajouter_RendezVous");
-App::post("/Ajouter-RendezVous", "rendezVous.ajouter");
-App::get("/lister-RendezVous", "rendezVous.lister", "lister_RendezVous");
-App::get("/rechercher-RendezVous", "rendezVous.rechercher", "rechercher_rendezvous");
-App::post("/rechercher-RendezVous", "rendezVous.rechercher");
-App::get("/modifier-RendezVous", "RendezVous.modifier", "modifier_RendezVous");
-App::post("/modifier-RendezVous", "RendezVous.modifier");
+App::get("/ajouter-rendezvous", "rendezvous.ajouter", "ajouter_rendezvous");
+App::post("/ajouter-rendezvous", "rendezvous.ajouter");
+App::get("/lister-rendezvous", "rendezvous.lister", "lister_rendezvous");
+App::get("/rechercher-rendezvous", "rendezvous.rechercher", "rechercher_rendezvous");
+App::post("/rechercher-rendezvous", "rendezvous.rechercher");
+App::get("/modifier-rendezvous", "rendezvous.modifier", "modifier_rendezvous");
+App::post("/modifier-rendezvous", "rendezvous.modifier");
 
 // attribution salle
 App::get("/affecter-salle", "salle.ajouter", "affecter_salle");
 App::post("/affecter-salle", "salle.ajouter");
+
+//consultation
+App::get("/ajouter-consultation", "consultation.ajouter", "ajouter_consultation");
+App::post("/ajouter-consultation", "consultation.ajouter");
+App::get("/lister-consultation", "consultation.lister", "lister_consultation");
+App::get("/rechercher-consultation", "consultation.rechercher", "rechercher_consultation");
+App::post("/rechercher-consultation", "consultation.rechercher");
+App::get("/modifier-consultation", "consultation.modifier", "modifier_consultation");
+App::post("/modifier-consultation", "consultation.modifier");
+
+//consultation
+App::get("/ajouter-admission", "admission.ajouter", "ajouter_admission");
+App::post("/ajouter-admission", "admission.ajouter");
+App::get("/lister-admission", "admission.lister", "lister_admission");
+App::get("/rechercher-admission", "admission.rechercher", "rechercher_admission");
+App::post("/rechercher-admission", "admission.rechercher");
+App::get("/modifier-admission", "admission.modifier", "modifier_admission");
+App::post("/modifier-admission", "admission.modifier");
+
