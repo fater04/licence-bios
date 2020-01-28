@@ -14,7 +14,7 @@
 						<div class="col-md-12 col-sm-12">
 							<div class="card card-box">
 								<div class="card-head">
-									<header>Allocation de Salle</header>
+									<header>Admission</header>
 									
 									
 								</div>

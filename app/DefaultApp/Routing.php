@@ -45,6 +45,11 @@ App::post("/modifier-rendezvous", "rendezvous.modifier");
 // attribution salle
 App::get("/affecter-salle", "salle.ajouter", "affecter_salle");
 App::post("/affecter-salle", "salle.ajouter");
+App::get("/lister-salle", "salle.lister", "lister_salle");
+App::get("/rechercher-salle", "salle.rechercher", "rechercher_salle");
+App::post("/rechercher-salle", "salle.rechercher");
+App::get("/modifier-salle", "salle.modifier", "modifier_salle");
+App::post("/modifier-salle", "salle.modifier");
 
 //consultation
 App::get("/ajouter-consultation", "consultation.ajouter", "ajouter_consultation");
@@ -55,7 +60,7 @@ App::post("/rechercher-consultation", "consultation.rechercher");
 App::get("/modifier-consultation", "consultation.modifier", "modifier_consultation");
 App::post("/modifier-consultation", "consultation.modifier");
 
-//consultation
+//admission
 App::get("/ajouter-admission", "admission.ajouter", "ajouter_admission");
 App::post("/ajouter-admission", "admission.ajouter");
 App::get("/lister-admission", "admission.lister", "lister_admission");

@@ -278,7 +278,7 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
     echo $active21;
 }
 ?>  ">
-                                            <a href="<?=\systeme\Application\Application::genererUrl("ajouter_RendezVous")?>"
+                                            <a href="<?=\systeme\Application\Application::genererUrl("ajouter_rendezvous")?>"
                                                 class="nav-link "><i class="fa fa-plus"></i> <span class="title">Ajouter
                                                     Rendez-Vous</span>
                                             </a>
@@ -296,7 +296,7 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
     echo $active23;
 }
 ?>  ">
-                                            <a href="<?=\systeme\Application\Application::genererUrl("modifier_RendezVous")?>"
+                                            <a href="<?=\systeme\Application\Application::genererUrl("modifier_rendezvous")?>"
                                                 class="nav-link "><i class="fa fa-edit"></i> <span
                                                     class="title">Modifier</span>
                                             </a>
@@ -305,7 +305,7 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
     echo $active24;
 }
 ?>  ">
-                                            <a href="<?=\systeme\Application\Application::genererUrl("lister_RendezVous")?>"
+                                            <a href="<?=\systeme\Application\Application::genererUrl("lister_rendezvous")?>"
                                                 class="nav-link "><i class="fa fa-list"></i> <span class="title">lister
                                                 </span>
                                             </a>
@@ -328,7 +328,7 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
     echo $active31;
 }
 ?>  ">
-                                            <a href="#" class="nav-link "><i class="fa fa-plus"></i> <span
+                                            <a href="<?=\systeme\Application\Application::genererUrl("ajouter_admission")?>" class="nav-link "><i class="fa fa-plus"></i> <span
                                                     class="title">Ajouter</span>
                                             </a>
                                         </li>
@@ -336,7 +336,7 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
     echo $active32;
 }
 ?>  ">
-                                            <a href="#" class="nav-link "><i class="fa fa-search"></i> <span
+                                            <a href="<?=\systeme\Application\Application::genererUrl("rechercher_admission")?>" class="nav-link "><i class="fa fa-search"></i> <span
                                                     class="title">Rechercher</span>
                                             </a>
                                         </li>
@@ -344,7 +344,7 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
     echo $active33;
 }
 ?>  ">
-                                            <a href="#" class="nav-link "><i class="fa fa-edit"></i> <span
+                                            <a href="<?=\systeme\Application\Application::genererUrl("modifier_admission")?>" class="nav-link "><i class="fa fa-edit"></i> <span
                                                     class="title">Modifier </span>
                                             </a>
                                         </li>
@@ -352,7 +352,7 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
     echo $active34;
 }
 ?>  ">
-                                            <a href="#" class="nav-link "><i class="fa fa-list"></i> <span
+                                            <a href="<?=\systeme\Application\Application::genererUrl("lister_admission")?>" class="nav-link "><i class="fa fa-list"></i> <span
                                                     class="title">lister </span>
                                             </a>
                                         </li>
@@ -374,7 +374,7 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
     echo $active41;
 }
 ?>  ">
-                                            <a href="#" class="nav-link "><i class="fa fa-plus"></i> <span
+                                            <a href="<?=\systeme\Application\Application::genererUrl("ajouter_consultation")?>" class="nav-link "><i class="fa fa-plus"></i> <span
                                                     class="title">Ajouter </span>
                                             </a>
                                         </li>
@@ -382,7 +382,7 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
     echo $active42;
 }
 ?>  ">
-                                            <a href="#" class="nav-link "><i class="fa fa-search"></i> <span
+                                            <a href="<?=\systeme\Application\Application::genererUrl("rechercher_consultation")?>" class="nav-link "><i class="fa fa-search"></i> <span
                                                     class="title">Rechercher </span>
                                             </a>
                                         </li>
@@ -390,7 +390,7 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
     echo $active43;
 }
 ?>  ">
-                                            <a href="#" class="nav-link "> <i class="fa fa-edit"></i><span
+                                            <a href="<?=\systeme\Application\Application::genererUrl("modifier_consultation")?>" class="nav-link "> <i class="fa fa-edit"></i><span
                                                     class="title">Modifier </span>
                                             </a>
                                         </li>
@@ -398,7 +398,7 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
     echo $active44;
 }
 ?>  ">
-                                            <a href="#" class="nav-link "><i class="fa fa-list"></i> <span
+                                            <a href="<?=\systeme\Application\Application::genererUrl("lister_consultation")?>" class="nav-link "><i class="fa fa-list"></i> <span
                                                     class="title">lister </span>
                                             </a>
                                         </li>
@@ -429,7 +429,7 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
     echo $active52;
 }
 ?> ">
-                                            <a href="#" class="nav-link "><i class="fa fa-search"></i> <span
+                                            <a href="<?=\systeme\Application\Application::genererUrl("rechercher_salle")?>" class="nav-link "><i class="fa fa-search"></i> <span
                                                     class="title">Rechercher Salle</span>
                                             </a>
                                         </li>
@@ -437,7 +437,7 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
     echo $active53;
 }
 ?> ">
-                                            <a href="#" class="nav-link "><i class="fa fa-edit"></i> <span
+                                            <a href="<?=\systeme\Application\Application::genererUrl("modifier_salle")?>" class="nav-link "><i class="fa fa-edit"></i> <span
                                                     class="title">Modifier Affectation</span>
                                             </a>
                                         </li>
@@ -445,7 +445,7 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
     echo $active54;
 }
 ?> ">
-                                            <a href="#" class="nav-link "><i class="fa fa-list"></i> <span
+                                            <a href="<?=\systeme\Application\Application::genererUrl("lister_salle")?>" class="nav-link "><i class="fa fa-list"></i> <span
                                                     class="title">Lister Salle</span>
                                             </a>
                                         </li>
