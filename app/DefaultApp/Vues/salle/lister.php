@@ -30,17 +30,14 @@
                         </thead>
                         <tbody>
                         <?php
-                        if (isset($listeRendezVous)) {
-                            foreach ($listeRendezVous as $r1) {
+                        if (isset($listeSalle)) {
+                            foreach ($listeSalle as $r1) {
                                 ?>
                                 <tr>
-                                    <td><?= $r1->getId(); ?></td>
-                                    <td><a href="#"><?= strtoupper($r1->getCodePatient()) ?></a></td>
-                                    <td><?= $r1->getDateRendezVous(); ?></td>
-                                    <td><?= $r1->getHeureDebut() . " a " . $r1->getHeureFin() ?></td>
-                                    <td><?= $r1->getIdMedecin(); ?></td>
-                                    <td><?= $r1->getNote(); ?></td>
-                                    <td><?= $r1->getDateCreation(); ?></td>
+                                    <td><?= $r1->getNumero(); ?></td>
+                                    <td><?= $r1->getTypes(); ?></td>
+                                    <td><?= $r1->getLit(); ?></td>
+                                    <td><?= $r1->getDat(); ?></td>
 
                                 </tr>
 

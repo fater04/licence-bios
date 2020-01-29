@@ -16,7 +16,7 @@
                     <div class="card-head">
                         <header>Recherche Salle</header>
                         <div class="tools">
-                            <?=\systeme\Application\Application::block('tools')?>
+                            <?= \systeme\Application\Application::block('tools') ?>
                         </div>
                     </div>
                     <div class="card-body ">
@@ -27,7 +27,7 @@
                                            class="col-sm-4 col-md-4 control-label">Code </label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" placeholder="Entrez code" name="critere"
-                                            <?php if (isset($critere)) {?> value="<?=$critere?>" <?php }?>
+                                            <?php if (isset($critere)) { ?> value="<?= $critere ?>" <?php } ?>
                                                required>
                                     </div>
                                     <div class="col-sm-2">
@@ -40,86 +40,37 @@
                         <br/><br/>
 
 
-                        <?php if (isset($listeRendezVous)) {
-    foreach ($listeRendezVous as $r1) {?>
+                        <?php if (isset($listeSalle)) { ?>
+                            <div class="table-responsive">
+                                <table class="table table-striped custom-table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>NO SALLE</th>
+                                        <th>TYPE</th>
+                                        <th>NBRE DE LIT</th>
+                                        <th>Date_Ajout</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                    foreach ($listeSalle as $r1) { ?>
 
-			<form  id="formulaire_ajoutez_rendevous" class="form-horizontal" method="post">
-									<input type="hidden" name="ajouter_rendezvous"/>
-										<div class="form-body">
-											<div class="form-group row">
-												<label class="control-label col-md-3">No Dossier
-													<span class="required"> * </span>
-												</label>
-												<div class="col-md-5">
-													<input type="text" name="no_dossier"  value="<?=$r1->getCodePatient()?>" placeholder="entrer no Dossier" class="form-control input-height" required />
-												</div>
-												</div>
-											</div>
-											<div class="form-group row">
-												<label class="control-label col-md-3"> Nom Complet
-													<span class="required"> </span>
-												</label>
-												<div class="col-md-5">
-													<input type="text" name="nom_complet"   class="form-control input-height"  readonly/>
-												</div>
-											</div>
-												<div class="form-group row">
-												<label class="control-label col-md-3">Date Rendez-Vous
-													<span class="required"> * </span>
-												</label>
-												<div class="input-append date col-md-5" id="dp1">
-													<input class="formDatePicker" placeholder="Date Rendez-Vous" value="<?=$r1->getDateRendezVous()?>"  size="44" name="date_rendezvous" type="text" readonly require="required">
-													<span class="add-on"><i class="fa fa-calendar"></i></span>
-												</div>
-											</div>
-											<div class="form-group row">
-												<label class="control-label col-md-3">De</label>
+                                        <tr>
+                                            <td><?= $r1->getNumero(); ?></td>
+                                            <td><?= $r1->getTypes(); ?></td>
+                                            <td><?= $r1->getLit(); ?></td>
+                                            <td><?= $r1->getDat(); ?></td>
 
-												<div class="col-md-5">
-													<div class="row">
-														<div class="col-md-5">
-															<input class="form-control input-height" value="<?=$r1->getHeureDebut()?>" type="time" name="h_start" value="13:45:00" id="example-time-input" >
-														</div>
-														<label class="control-label small-label col-md-2">A </label>
+                                        </tr>
 
-														<div class="col-md-5">
-															<input class="form-control input-height"  value="<?=$r1->getHeureFin()?>"type="time " name="h_end" value="13:45:00" id="example-time-input2">
-														</div>
-													</div>
-												</div>
-											</div>
+                                    <?php } ?>
 
-											<div class="form-group row">
-												<label class="control-label col-md-3">Medcin Consultant
-													<span class="required"> * </span>
-												</label>
-												<div class="col-md-5">
-													<select class="form-control input-height" name="medecin" required>
-														<option value="<?=$r1->getDateRendezVous()?>"><?=$r1->getIdMedecin()?></option>
-														<option value="1">Dr. Rajesh</option>
-														<option value="2">Dr. Sarah Smith</option>
-														<option value="3">Dr. John Deo</option>
-														<option value="4">Dr. Jay Soni</option>
-														<option value="5">Dr. Jacob Ryan</option>
-														<option value="6">Dr. Megha Trivedi</option>
-													</select>
-												</div>
-											</div>
+                                    </tbody>
+                                </table>
+                            </div>
 
-
-											<div class="form-group row">
-												<label class="control-label col-md-3">Notes
-													<span class="required"> * </span>
-												</label>
-												<div class="col-md-5">
-													<textarea name="note" class="form-control-textarea" placeholder="note" rows="5" required><?=$r1->getNote()?></textarea>
-												</div>
-											</div>
-										</div>
-									</form>
-
-                            <?php }
-}?>
+                            <?php
+                        } ?>
 
 
                     </div>
