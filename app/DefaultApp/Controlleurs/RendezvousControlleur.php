@@ -12,7 +12,7 @@ namespace app\DefaultApp\Controlleurs;
 use app\DefaultApp\Models\RendezVous;
 use systeme\Controlleur\Controlleur;
 
-class RendezVousControlleur extends Controlleur
+class RendezvousControlleur extends Controlleur
 {
     public function ajouter()
     {
