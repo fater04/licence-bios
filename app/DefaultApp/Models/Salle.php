@@ -17,6 +17,7 @@ class Salle extends Model
     private $numero;
     private $types;
     private $lit;
+    private $disponible;
     private $dat;
 
     /**
@@ -86,6 +87,23 @@ class Salle extends Model
     /**
      * @return mixed
      */
+    public function getDisponible()
+    {
+        return $this->disponible;
+    }
+
+    /**
+     * @param mixed $disponible
+     */
+    public function setDisponible($disponible)
+    {
+        $this->disponible = $disponible;
+    }
+
+
+    /**
+     * @return mixed
+     */
     public function getDat()
     {
         return $this->dat;
@@ -103,11 +121,12 @@ class Salle extends Model
     {
         try {
                 $con = self::connection();
-                $req = "insert into salle (numero,types,lit) VALUES( :numero,:types,:lit)";
+                $req = "insert into salle (numero,types,lit,disponible) VALUES( :numero,:types,:lit,:disponible)";
                 $param = array(
                     ":numero" => $this->numero,
                     ":types" => $this->types,
-                    ":lit"=>$this->lit
+                    ":lit"=>$this->lit,
+                    ":disponible"=>$this->disponible
 
                 );
 
@@ -126,12 +145,13 @@ class Salle extends Model
     {
         try {
                 $con = self::connection();
-                $req = "update salle set   numero=:numero,types=:types,lit=:lit where id=:id";
+                $req = "update salle set   numero=:numero,types=:types,lit=:lit, disponible=:disponible where id=:id";
 
                 $param = array(
                     ":numero" => $this->numero,
                     ":types" => $this->types,
                     ":lit"=>$this->lit,
+                    ":disponible"=>$this->disponible,
                     ":id" => $this->id
                 );
 
@@ -169,6 +189,27 @@ class Salle extends Model
             return $data;
         } catch (Exception $ex) {
             throw new \Exception($ex->getMessage());
+        }
+    }
+    public function updateDisponibilite()
+    {
+        try {
+            $con = self::connection();
+            $req = "update salle set  disponible=:disponible where id=:id";
+
+            $param = array(
+                ":disponible"=>$this->disponible,
+                ":id" => $this->id
+            );
+
+            $stmt = $con->prepare($req);
+            if ($stmt->execute($param)) {
+                return "ok";
+            } else {
+                return "no";
+            }
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
         }
     }
 
