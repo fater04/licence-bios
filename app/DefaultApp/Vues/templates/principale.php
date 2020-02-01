@@ -438,7 +438,7 @@ if (!\app\DefaultApp\Models\Utilisateur::session()) {
 }
 ?> ">
                                             <a href="<?=\systeme\Application\Application::genererUrl("modifier_salle")?>" class="nav-link "><i class="fa fa-edit"></i> <span
-                                                    class="title">Modifier Affectation</span>
+                                                    class="title">Modifier Salle</span>
                                             </a>
                                         </li>
                                         <li class="nav-item   <?php if (isset($active54)) {

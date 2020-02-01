@@ -25,6 +25,7 @@
                             <th>NO SALLE</th>
                             <th>TYPE</th>
                             <th>NBRE DE LIT</th>
+                            <th>DISPONIBLE</th>
                             <th>Date_Ajout</th>
                         </tr>
                         </thead>
@@ -37,6 +38,7 @@
                                     <td><?= $r1->getNumero(); ?></td>
                                     <td><?= $r1->getTypes(); ?></td>
                                     <td><?= $r1->getLit(); ?></td>
+                                    <td><?= $r1->getDisponible()?></td>
                                     <td><?= $r1->getDat(); ?></td>
 
                                 </tr>
