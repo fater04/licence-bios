@@ -52,17 +52,7 @@
                                                     <input type="number" name="lit" data-required="1" min="0" max="10"  required placeholder="enter nombre de lit " class="form-control input-height" />
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <label class="control-label col-md-3">Disponible
-                                                    <span class="required"> * </span>
-                                                </label>
-                                                <div class="col-md-5">
-                                                    <select class="form-control input-height" name="disponible" required>
-                                                        <option value="OUI" aria-selected="true">OUI</option>
-                                                        <option value="NON">NON</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+
 										</div>
 										<div class="form-actions">
 											<div class="row">

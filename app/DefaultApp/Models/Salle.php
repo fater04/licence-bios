@@ -191,15 +191,34 @@ class Salle extends Model
             throw new \Exception($ex->getMessage());
         }
     }
-    public function updateDisponibilite()
+
+    public static function CheckDisponible($id)
     {
         try {
             $con = self::connection();
-            $req = "update salle set  disponible=:disponible where id=:id";
+            $req = "SELECT disponible FROM salle WHERE  id= '" . $id . "' ";
+            $rps = $con->query($req);
+            $data = $rps->fetch();
+            return $data['disponible'];
+        } catch (Exception $ex) {
+            throw new \Exception($ex->getMessage());
+        }
+    }
 
+
+    public function updateDisponibilite($id)
+    {
+        try {
+            $con = self::connection();
+           $r=self::CheckDisponible($id)- 1;
+           if($r>=0) {
+               $req = "update salle set  disponible=(disponible - :disponible) where id=:id";
+           }else{
+               return "no";
+           }
             $param = array(
                 ":disponible"=>$this->disponible,
-                ":id" => $this->id
+                ":id" => $id
             );
 
             $stmt = $con->prepare($req);

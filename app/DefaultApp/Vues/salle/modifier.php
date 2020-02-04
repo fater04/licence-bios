@@ -76,18 +76,7 @@
                         <input type="number" name="lit" data-required="1" min="0" max="10"  value="<?= $r1->getLit()?>" required placeholder="enter nombre de lit " class="form-control input-height" />
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label class="control-label col-md-3">Disponible
-                        <span class="required"> * </span>
-                    </label>
-                    <div class="col-md-5">
-                        <select class="form-control input-height" name="disponible" required>
-                            <option value="<?= $r1->getDisponible()?>" aria-selected="true" hidden><?= $r1->getDisponible()?></option>
-                            <option value="OUI">OUI</option>
-                            <option value="NON">NON</option>
-                        </select>
-                    </div>
-                </div>
+
 
             </div>
             <div class="form-actions">

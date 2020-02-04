@@ -26,13 +26,13 @@ class SalleControlleur extends Controlleur
             $numero=trim($_POST['numero']);
             $types=trim($_POST['types']);
             $lit=trim($_POST['lit']);
-            $disponible=trim($_POST['disponible']);
+            $disponible=trim($_POST['lit']);
             if($lit> 0  && $lit < 10) {
                 $sa = new Salle();
                 $sa->setNumero($numero);
                 $sa->setLit($lit);
                 $sa->setTypes($types);
-                $sa->setDisponible($disponible);
+                $sa->setDisponible($lit);
                 $r = $sa->enregistrer();
                 if ($r == "ok") {
                     $variable['notification'] = array("type" => 'success', "titre" => "Success", "message" => "<strong>Salle</strong> ,Ajoutez avec Suceeès !");
@@ -67,7 +67,7 @@ class SalleControlleur extends Controlleur
         if(isset($_POST['id'])){
             $numero=trim($_POST['numero']);
             $types=trim($_POST['types']);
-            $disponible=trim($_POST['disponible']);
+            $disponible=trim($_POST['lit']);
             $lit=trim($_POST['lit']);
             $id=trim($_POST['id']);
 
