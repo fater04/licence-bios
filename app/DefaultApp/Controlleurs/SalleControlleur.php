@@ -31,13 +31,13 @@ class SalleControlleur extends Controlleur
 
                 if($types=='prive'){
                     if($lit > 2){
-                        $variable['notification'] = array("type" => 'success', "titre" => "Success", "message" => "Il ne peut y avoir au maximum deux lits dans une salle <strong>privé</strong>.");
+                        $variable['notification'] = array("type" => 'warning', "titre" => "Erreur", "message" => "Il ne peut y avoir au maximum deux lits dans une salle <strong>privé</strong>.");
                     return    $this->render("salle/ajouter", $variable);
                     }
 
                 }elseif($types=='hospitalisation'){
                     if($lit > 1){
-                         $variable['notification'] = array("type" => 'success', "titre" => "Success", "message" => "Il ne peut y avoir qu'un seul lit dans une salle <strong>hospitalisation</strong> .");
+                         $variable['notification'] = array("type" => 'warning', "titre" => "Erreur", "message" => "Il ne peut y avoir qu'un seul lit dans une salle <strong>hospitalisation</strong> .");
                         return    $this->render("salle/ajouter", $variable);
                     }
                 }
