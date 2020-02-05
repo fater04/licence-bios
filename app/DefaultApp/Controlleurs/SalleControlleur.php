@@ -26,8 +26,22 @@ class SalleControlleur extends Controlleur
             $numero=trim($_POST['numero']);
             $types=trim($_POST['types']);
             $lit=trim($_POST['lit']);
-            $disponible=trim($_POST['lit']);
-            if($lit> 0  && $lit < 10) {
+
+            if($lit> 0  && $lit < 10){
+
+                if($types=='prive'){
+                    if($lit > 2){
+                        $variable['notification'] = array("type" => 'success', "titre" => "Success", "message" => "Il ne peut y avoir au maximum deux lits dans une salle <strong>privé</strong>.");
+                    return    $this->render("salle/ajouter", $variable);
+                    }
+
+                }elseif($types=='hospitalisation'){
+                    if($lit > 1){
+                         $variable['notification'] = array("type" => 'success', "titre" => "Success", "message" => "Il ne peut y avoir qu'un seul lit dans une salle <strong>hospitalisation</strong> .");
+                        return    $this->render("salle/ajouter", $variable);
+                    }
+                }
+
                 $sa = new Salle();
                 $sa->setNumero($numero);
                 $sa->setLit($lit);
@@ -74,7 +88,8 @@ class SalleControlleur extends Controlleur
             if($lit> 0  && $lit < 10) {
                 $sa = new Salle();
                 $sa->setNumero($numero);
-                $sa->setLit($lit);
+
+
                 $sa->setTypes($types);
                 $sa->setDisponible($disponible);
                 $sa->setId($id);
@@ -84,6 +99,8 @@ class SalleControlleur extends Controlleur
                 } else {
                     $variable['notification'] = array("type" => 'warning', "titre" => "Erreur", "message" => "<strong>code</strong>," . $r);
                 }
+
+
             }else{
                 $variable['notification'] = array("type" => 'warning', "titre" => "Erreur", "message" => "Nombre de <strong>lit</strong> Incorrect !");
             }
