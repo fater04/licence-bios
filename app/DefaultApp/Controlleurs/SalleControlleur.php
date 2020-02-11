@@ -41,7 +41,6 @@ class SalleControlleur extends Controlleur
                         return    $this->render("salle/ajouter", $variable);
                     }
                 }
-
                 $sa = new Salle();
                 $sa->setNumero($numero);
                 $sa->setLit($lit);
@@ -51,7 +50,7 @@ class SalleControlleur extends Controlleur
                 if ($r == "ok") {
                     $variable['notification'] = array("type" => 'success', "titre" => "Success", "message" => "<strong>Salle</strong> ,Ajoutez avec Suceeès !");
                 } else {
-                    $variable['notification'] = array("type" => 'warning', "titre" => "Erreur", "message" => "<strong>code</strong>," . $r);
+                    $variable['notification'] = array("type" => 'warning', "titre" => "Erreur", "message" => " " . $r);
                 }
             }else{
                 $variable['notification'] = array("type" => 'warning', "titre" => "Erreur", "message" => "Nombre de <strong>lit</strong> Incorrect !");
@@ -93,6 +92,7 @@ class SalleControlleur extends Controlleur
                 $sa->setTypes($types);
                 $sa->setDisponible($disponible);
                 $sa->setId($id);
+                $sa->setLit($lit);
                 $r = $sa->modifier();
                 if ($r == "ok") {
                     $variable['notification'] = array("type" => 'success', "titre" => "Success", "message" => "<strong>Salle</strong> ,Modifier avec Suceeès !");

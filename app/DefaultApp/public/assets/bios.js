@@ -56,6 +56,28 @@ $("document").ready(function() {
       }
     });
   });
+
+  $("#no_salle").on("input", function(e) {
+    var val = $("#no_salle").val();
+    $.ajax({
+      url: "app/DefaultApp/traitements/admission.php?no=" + val,
+      type: "GET",
+      data: "",
+      contentType: false,
+      cache: false,
+      processData: false,
+      success: function(data) {
+        if(data.trim()==='ok'){
+          $(".btn_ajouter").css("display","inline");
+          $("#salle_affiche").html(" ");
+        }else{
+          $("#salle_affiche").html("Salle non disponible");
+          $(".btn_ajouter").css("display","none");
+        }
+
+      }
+    });
+  });
   // patient
   $("#formulaire_ajouter_patient").on("submit", function(e) {
     e.preventDefault();

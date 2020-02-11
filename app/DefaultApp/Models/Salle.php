@@ -196,7 +196,7 @@ class Salle extends Model
     {
         try {
             $con = self::connection();
-            $req = "SELECT disponible FROM salle WHERE  id= '" . $id . "' ";
+            $req = "SELECT disponible FROM salle WHERE  numero= '" . $id . "' ";
             $rps = $con->query($req);
             $data = $rps->fetch();
             return $data['disponible'];
@@ -206,18 +206,14 @@ class Salle extends Model
     }
 
 
-    public function updateDisponibilite($id)
+    public static function updateDisponibilite($id,$disponible)
     {
         try {
             $con = self::connection();
-           $r=self::CheckDisponible($id)- 1;
-           if($r>=0) {
-               $req = "update salle set  disponible=(disponible - :disponible) where id=:id";
-           }else{
-               return "no";
-           }
+               $req = "update salle set  disponible=:disponible where numero=:id";
+
             $param = array(
-                ":disponible"=>$this->disponible,
+                ":disponible" => $disponible,
                 ":id" => $id
             );
 
